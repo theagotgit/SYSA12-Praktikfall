@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class Application {
 
@@ -27,6 +28,7 @@ public class Application {
 	private JTextField textFieldNewSupplierFax;
 	private JTextField textFieldNewSupplierNumber;
 	private JTextField textFieldNewSupplierSite;
+	private JLabel lblRemoveProductName;
 
 	/**
 	 * Launch the application.
@@ -198,21 +200,19 @@ public class Application {
 		tabbedPaneInsideInvoice.addTab("Ta Bort Faktura", null, panelRemoveInvoice, null);
 		
 		JPanel panelCategory = new JPanel();
-		tabbedPane.addTab("New tab", null, panelCategory, null);
+		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);
+		panelCategory.setLayout(null);
 		
-		JPanel panelRegister = new JPanel();
-		tabbedPane.addTab("Registrera", null, panelRegister, null);
-		panelRegister.setLayout(null);
-		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane_1.setBounds(10, 11, 822, 489);
-		panelRegister.add(tabbedPane_1);
+		JTabbedPane tabbedPaneInsideCategory = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPaneInsideCategory.setBounds(10, 11, 822, 489);
+		panelCategory.add(tabbedPaneInsideCategory);
 		
 		JPanel panelRegisterNewCategory = new JPanel();
-		tabbedPane_1.addTab("Ny Kategori eller Vara", null, panelRegisterNewCategory, null);
+		tabbedPaneInsideCategory.addTab("Ny Kategory eller Vara", null, panelRegisterNewCategory, null);
 		panelRegisterNewCategory.setLayout(null);
 		
 		JLabel lblNewCategory = new JLabel("Ny kategori: ");
+		lblNewCategory.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewCategory.setBounds(10, 11, 79, 14);
 		panelRegisterNewCategory.add(lblNewCategory);
 		
@@ -230,6 +230,7 @@ public class Application {
 		panelRegisterNewCategory.add(btnAddCategory);
 		
 		JLabel lblNewProduct = new JLabel("Ny vara:");
+		lblNewProduct.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewProduct.setBounds(10, 120, 48, 14);
 		panelRegisterNewCategory.add(lblNewProduct);
 		
@@ -254,49 +255,44 @@ public class Application {
 		btnAddProduct.setBounds(10, 195, 164, 23);
 		panelRegisterNewCategory.add(btnAddProduct);
 		
-		JPanel panelRegisterNewSupplier = new JPanel();
-		tabbedPane_1.addTab("Ny Leverant\u00F6r", null, panelRegisterNewSupplier, null);
-		panelRegisterNewSupplier.setLayout(null);
+		JPanel panelRemoveCategory = new JPanel();
+		tabbedPaneInsideCategory.addTab("Ta Bort Kategori eller Vara", null, panelRemoveCategory, null);
+		panelRemoveCategory.setLayout(null);
 		
-		JLabel lblNewSupplierName = new JLabel("Namn");
-		lblNewSupplierName.setBounds(10, 11, 48, 14);
-		panelRegisterNewSupplier.add(lblNewSupplierName);
+		JLabel lblRemoveCategory = new JLabel("Kategori: ");
+		lblRemoveCategory.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblRemoveCategory.setBounds(17, 11, 99, 14);
+		panelRemoveCategory.add(lblRemoveCategory);
 		
-		JLabel lblNewSupplierFax = new JLabel("Faxnummer");
-		lblNewSupplierFax.setBounds(10, 36, 77, 14);
-		panelRegisterNewSupplier.add(lblNewSupplierFax);
+		JLabel lblRemoveCategoryName = new JLabel("Namn");
+		lblRemoveCategoryName.setBounds(17, 36, 48, 14);
+		panelRemoveCategory.add(lblRemoveCategoryName);
 		
-		JLabel lblNewSupplierPhone = new JLabel("Telefonnummer");
-		lblNewSupplierPhone.setBounds(10, 61, 88, 14);
-		panelRegisterNewSupplier.add(lblNewSupplierPhone);
+		JComboBox comboBoxRemoveCategoryName = new JComboBox();
+		comboBoxRemoveCategoryName.setBounds(85, 36, 99, 18);
+		panelRemoveCategory.add(comboBoxRemoveCategoryName);
 		
-		JLabel lblNewSupplierSite = new JLabel("Webbadress");
-		lblNewSupplierSite.setBounds(10, 86, 77, 14);
-		panelRegisterNewSupplier.add(lblNewSupplierSite);
+		JLabel lblRemoveProduct = new JLabel("Vara:");
+		lblRemoveProduct.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblRemoveProduct.setBounds(17, 99, 73, 14);
+		panelRemoveCategory.add(lblRemoveProduct);
 		
-		textFieldNewSupplierName = new JTextField();
-		textFieldNewSupplierName.setBounds(107, 8, 128, 20);
-		panelRegisterNewSupplier.add(textFieldNewSupplierName);
-		textFieldNewSupplierName.setColumns(10);
+		lblRemoveProductName = new JLabel("Namn");
+		lblRemoveProductName.setBounds(17, 124, 48, 14);
+		panelRemoveCategory.add(lblRemoveProductName);
 		
-		textFieldNewSupplierFax = new JTextField();
-		textFieldNewSupplierFax.setBounds(107, 33, 128, 20);
-		panelRegisterNewSupplier.add(textFieldNewSupplierFax);
-		textFieldNewSupplierFax.setColumns(10);
+		JComboBox comboBoxRemoveProductName = new JComboBox();
+		comboBoxRemoveProductName.setBounds(85, 124, 99, 18);
+		panelRemoveCategory.add(comboBoxRemoveProductName);
 		
-		textFieldNewSupplierNumber = new JTextField();
-		textFieldNewSupplierNumber.setBounds(108, 58, 127, 20);
-		panelRegisterNewSupplier.add(textFieldNewSupplierNumber);
-		textFieldNewSupplierNumber.setColumns(10);
+		JButton btnTaBort_1 = new JButton("Ta Bort");
+		btnTaBort_1.setBounds(17, 153, 89, 23);
+		panelRemoveCategory.add(btnTaBort_1);
 		
-		textFieldNewSupplierSite = new JTextField();
-		textFieldNewSupplierSite.setBounds(107, 83, 128, 20);
-		panelRegisterNewSupplier.add(textFieldNewSupplierSite);
-		textFieldNewSupplierSite.setColumns(10);
-		
-		JButton btnNewSupplier = new JButton("L\u00E4gg till leverant\u00F6r");
-		btnNewSupplier.setBounds(10, 124, 227, 23);
-		panelRegisterNewSupplier.add(btnNewSupplier);
+		JLabel lblEller = new JLabel("Eller");
+		lblEller.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEller.setBounds(17, 74, 48, 14);
+		panelRemoveCategory.add(lblEller);
 		
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);
@@ -341,39 +337,115 @@ public class Application {
 		tabbedPane.addTab("Leverant\u00F6rer", null, panelSupplier, null);
 		panelSupplier.setLayout(null);
 		
+		JTabbedPane tabbedPaneInsideSuppliers = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPaneInsideSuppliers.setBounds(10, 11, 822, 489);
+		panelSupplier.add(tabbedPaneInsideSuppliers);
+		
+		JPanel panelRegisterNewSupplier = new JPanel();
+		tabbedPaneInsideSuppliers.addTab("Ny Leverant\u00F6r", null, panelRegisterNewSupplier, null);
+		panelRegisterNewSupplier.setLayout(null);
+		
+		JLabel lblNewSupplierName = new JLabel("Namn");
+		lblNewSupplierName.setBounds(10, 11, 48, 14);
+		panelRegisterNewSupplier.add(lblNewSupplierName);
+		
+		JLabel lblNewSupplierFax = new JLabel("Faxnummer");
+		lblNewSupplierFax.setBounds(10, 36, 77, 14);
+		panelRegisterNewSupplier.add(lblNewSupplierFax);
+		
+		JLabel lblNewSupplierPhone = new JLabel("Telefonnummer");
+		lblNewSupplierPhone.setBounds(10, 61, 88, 14);
+		panelRegisterNewSupplier.add(lblNewSupplierPhone);
+		
+		JLabel lblNewSupplierSite = new JLabel("Webbadress");
+		lblNewSupplierSite.setBounds(10, 86, 77, 14);
+		panelRegisterNewSupplier.add(lblNewSupplierSite);
+		
+		textFieldNewSupplierName = new JTextField();
+		textFieldNewSupplierName.setBounds(107, 8, 128, 20);
+		panelRegisterNewSupplier.add(textFieldNewSupplierName);
+		textFieldNewSupplierName.setColumns(10);
+		
+		textFieldNewSupplierFax = new JTextField();
+		textFieldNewSupplierFax.setBounds(107, 33, 128, 20);
+		panelRegisterNewSupplier.add(textFieldNewSupplierFax);
+		textFieldNewSupplierFax.setColumns(10);
+		
+		textFieldNewSupplierNumber = new JTextField();
+		textFieldNewSupplierNumber.setBounds(108, 58, 127, 20);
+		panelRegisterNewSupplier.add(textFieldNewSupplierNumber);
+		textFieldNewSupplierNumber.setColumns(10);
+		
+		textFieldNewSupplierSite = new JTextField();
+		textFieldNewSupplierSite.setBounds(107, 83, 128, 20);
+		panelRegisterNewSupplier.add(textFieldNewSupplierSite);
+		textFieldNewSupplierSite.setColumns(10);
+		
+		JButton btnNewSupplier = new JButton("L\u00E4gg till leverant\u00F6r");
+		btnNewSupplier.setBounds(10, 124, 227, 23);
+		panelRegisterNewSupplier.add(btnNewSupplier);
+		
+		JPanel panelSearchSupplier = new JPanel();
+		tabbedPaneInsideSuppliers.addTab("S\u00F6k Leverant\u00F6r", null, panelSearchSupplier, null);
+		panelSearchSupplier.setLayout(null);
+		
+		JButton btnSortSupplier = new JButton("Sortera");
+		btnSortSupplier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSortSupplier.setBounds(10, 71, 80, 23);
+		panelSearchSupplier.add(btnSortSupplier);
+		
+		JLabel lblSupplierChoice = new JLabel("eller");
+		lblSupplierChoice.setBounds(100, 75, 48, 14);
+		panelSearchSupplier.add(lblSupplierChoice);
+		
+		JButton btnSearchAllSuppliers = new JButton("Visa alla");
+		btnSearchAllSuppliers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSearchAllSuppliers.setBounds(136, 71, 89, 23);
+		panelSearchSupplier.add(btnSearchAllSuppliers);
+		
 		JLabel lblSearchSupplierByCategory = new JLabel("Kategori");
-		lblSearchSupplierByCategory.setBounds(10, 17, 48, 14);
-		panelSupplier.add(lblSearchSupplierByCategory);
+		lblSearchSupplierByCategory.setBounds(10, 11, 48, 14);
+		panelSearchSupplier.add(lblSearchSupplierByCategory);
+		
+		JLabel lblSearchSupplierByProduct = new JLabel("Vara");
+		lblSearchSupplierByProduct.setBounds(10, 36, 48, 14);
+		panelSearchSupplier.add(lblSearchSupplierByProduct);
+		
+		JComboBox comboBoxSearchSupplierByProduct = new JComboBox();
+		comboBoxSearchSupplierByProduct.setBounds(89, 34, 136, 18);
+		panelSearchSupplier.add(comboBoxSearchSupplierByProduct);
 		
 		JComboBox comboBoxSearchSupplierByCategory = new JComboBox();
-		comboBoxSearchSupplierByCategory.setBounds(66, 15, 136, 18);
-		panelSupplier.add(comboBoxSearchSupplierByCategory);
+		comboBoxSearchSupplierByCategory.setBounds(89, 9, 136, 18);
+		panelSearchSupplier.add(comboBoxSearchSupplierByCategory);
 		
 		JScrollPane scrollPaneSearchSuppliers = new JScrollPane();
-		scrollPaneSearchSuppliers.setBounds(345, 11, 487, 489);
-		panelSupplier.add(scrollPaneSearchSuppliers);
+		scrollPaneSearchSuppliers.setBounds(280, 11, 527, 439);
+		panelSearchSupplier.add(scrollPaneSearchSuppliers);
 		
 		JTextArea textAreaSearchSuppliers = new JTextArea();
 		scrollPaneSearchSuppliers.setViewportView(textAreaSearchSuppliers);
 		
-		JButton btnSortSupplier = new JButton("Sortera");
-		btnSortSupplier.setBounds(10, 98, 89, 23);
-		panelSupplier.add(btnSortSupplier);
+		JPanel panel = new JPanel();
+		tabbedPaneInsideSuppliers.addTab("Ta Bort Leverant\u00F6r", null, panel, null);
+		panel.setLayout(null);
 		
-		JLabel lblSupplierChoice = new JLabel("eller");
-		lblSupplierChoice.setBounds(111, 102, 48, 14);
-		panelSupplier.add(lblSupplierChoice);
+		JLabel lblNamn = new JLabel("Namn");
+		lblNamn.setBounds(10, 11, 48, 14);
+		panel.add(lblNamn);
 		
-		JButton btnSearchAllSuppliers = new JButton("Visa alla");
-		btnSearchAllSuppliers.setBounds(143, 98, 89, 23);
-		panelSupplier.add(btnSearchAllSuppliers);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(68, 11, 117, 18);
+		panel.add(comboBox);
 		
-		JLabel lblSearchSupplierByProduct = new JLabel("Vara");
-		lblSearchSupplierByProduct.setBounds(10, 42, 48, 14);
-		panelSupplier.add(lblSearchSupplierByProduct);
-		
-		JComboBox comboBoxSearchSupplierByProduct = new JComboBox();
-		comboBoxSearchSupplierByProduct.setBounds(66, 42, 136, 18);
-		panelSupplier.add(comboBoxSearchSupplierByProduct);
+		JButton btnRemoveSupplier = new JButton("Ta Bort Leverant\u00F6r");
+		btnRemoveSupplier.setBounds(10, 40, 178, 23);
+		panel.add(btnRemoveSupplier);
 	}
 }
