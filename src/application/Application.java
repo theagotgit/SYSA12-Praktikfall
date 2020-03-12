@@ -31,6 +31,7 @@ public class Application {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -193,22 +194,6 @@ public class Application {
 			}
 		});
 
-		JPanel panelRemoveInvoice = new JPanel();
-		tabbedPaneInsideInvoice.addTab("Ta Bort Faktura", null, panelRemoveInvoice, null);
-		panelRemoveInvoice.setLayout(null);
-
-		JLabel lblInvoiceNumber = new JLabel("Fakturanummer");
-		lblInvoiceNumber.setBounds(10, 11, 102, 14);
-		panelRemoveInvoice.add(lblInvoiceNumber);
-
-		JComboBox comboBoxRemoveInvoice = new JComboBox();
-		comboBoxRemoveInvoice.setBounds(133, 11, 102, 18);
-		panelRemoveInvoice.add(comboBoxRemoveInvoice);
-
-		JButton btnRemoveInvoice = new JButton("Ta Bort");
-		btnRemoveInvoice.setBounds(10, 51, 89, 23);
-		panelRemoveInvoice.add(btnRemoveInvoice);
-
 		JPanel panelSupplier = new JPanel();
 		tabbedPane.addTab("Leverant\u00F6rer", null, panelSupplier, null);
 		panelSupplier.setLayout(null);
@@ -308,133 +293,75 @@ public class Application {
 		JTextArea textAreaSearchSuppliers = new JTextArea();
 		scrollPaneSearchSuppliers.setViewportView(textAreaSearchSuppliers);
 
-		JPanel panel = new JPanel();
-		tabbedPaneInsideSuppliers.addTab("Ta Bort Leverant\u00F6r", null, panel, null);
-		panel.setLayout(null);
-
-		JLabel lblNamn = new JLabel("Namn");
-		lblNamn.setBounds(10, 11, 48, 14);
-		panel.add(lblNamn);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(68, 11, 117, 18);
-		panel.add(comboBox);
-
-		JButton btnRemoveSupplier = new JButton("Ta Bort Leverant\u00F6r");
-		btnRemoveSupplier.setBounds(10, 40, 178, 23);
-		panel.add(btnRemoveSupplier);
-
 		JPanel panelCategory = new JPanel();
 		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);
 		panelCategory.setLayout(null);
-
-		JTabbedPane tabbedPaneInsideCategory = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPaneInsideCategory.setBounds(10, 11, 822, 489);
-		panelCategory.add(tabbedPaneInsideCategory);
-
-		JPanel panelRegisterNewCategory = new JPanel();
-		tabbedPaneInsideCategory.addTab("Ny Kategori eller Vara", null, panelRegisterNewCategory, null);
-		panelRegisterNewCategory.setLayout(null);
-
-		JLabel lblNewCategory = new JLabel("Ny kategori: ");
-		lblNewCategory.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewCategory.setBounds(10, 11, 79, 14);
-		panelRegisterNewCategory.add(lblNewCategory);
-
-		JLabel lblNewCategoryName = new JLabel("Namn");
-		lblNewCategoryName.setBounds(10, 36, 48, 14);
-		panelRegisterNewCategory.add(lblNewCategoryName);
-
-		textFieldNewCategoryName = new JTextField();
-		textFieldNewCategoryName.setBounds(78, 33, 96, 20);
-		panelRegisterNewCategory.add(textFieldNewCategoryName);
-		textFieldNewCategoryName.setColumns(10);
-
-		JButton btnAddCategory = new JButton("L\u00E4gg till kategori");
-		btnAddCategory.setBounds(10, 61, 164, 23);
-		panelRegisterNewCategory.add(btnAddCategory);
-
-		JLabel lblNewProduct = new JLabel("Ny vara:");
-		lblNewProduct.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewProduct.setBounds(10, 120, 48, 14);
-		panelRegisterNewCategory.add(lblNewProduct);
-
-		JLabel lblNewProductName = new JLabel("Namn");
-		lblNewProductName.setBounds(10, 145, 48, 14);
-		panelRegisterNewCategory.add(lblNewProductName);
-
-		JLabel lblNewProductCategory = new JLabel("Kategori");
-		lblNewProductCategory.setBounds(10, 221, 48, 14);
-		panelRegisterNewCategory.add(lblNewProductCategory);
-
-		JComboBox comboBoxNewProductCategory = new JComboBox();
-		comboBoxNewProductCategory.setBounds(78, 219, 96, 18);
-		panelRegisterNewCategory.add(comboBoxNewProductCategory);
-
-		textFieldNewProductName = new JTextField();
-		textFieldNewProductName.setBounds(78, 142, 96, 20);
-		panelRegisterNewCategory.add(textFieldNewProductName);
-		textFieldNewProductName.setColumns(10);
-
-		JButton btnAddProduct = new JButton("L\u00E4gg till vara");
-		btnAddProduct.setBounds(10, 258, 164, 23);
-		panelRegisterNewCategory.add(btnAddProduct);
-
-		textFieldNewProductNumber = new JTextField();
-		textFieldNewProductNumber.setBounds(78, 167, 96, 20);
-		panelRegisterNewCategory.add(textFieldNewProductNumber);
-		textFieldNewProductNumber.setColumns(10);
-
-		JLabel lblVarunummer = new JLabel("Varunummer");
-		lblVarunummer.setBounds(10, 170, 79, 14);
-		panelRegisterNewCategory.add(lblVarunummer);
-
-		JLabel lblNewProductSupplier = new JLabel("Leverant\u00F6r");
-		lblNewProductSupplier.setBounds(10, 196, 79, 14);
-		panelRegisterNewCategory.add(lblNewProductSupplier);
-
-		JComboBox comboBoxNewProductSupplier = new JComboBox();
-		comboBoxNewProductSupplier.setBounds(78, 195, 96, 18);
-		panelRegisterNewCategory.add(comboBoxNewProductSupplier);
-
-		JPanel panelRemoveCategory = new JPanel();
-		tabbedPaneInsideCategory.addTab("Ta Bort Kategori eller Vara", null, panelRemoveCategory, null);
-		panelRemoveCategory.setLayout(null);
-
-		JLabel lblRemoveCategory = new JLabel("Kategori: ");
-		lblRemoveCategory.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblRemoveCategory.setBounds(17, 11, 99, 14);
-		panelRemoveCategory.add(lblRemoveCategory);
-
-		JLabel lblRemoveCategoryName = new JLabel("Namn");
-		lblRemoveCategoryName.setBounds(17, 36, 48, 14);
-		panelRemoveCategory.add(lblRemoveCategoryName);
-
-		JComboBox comboBoxRemoveCategoryName = new JComboBox();
-		comboBoxRemoveCategoryName.setBounds(85, 36, 99, 18);
-		panelRemoveCategory.add(comboBoxRemoveCategoryName);
-
-		JLabel lblRemoveProduct = new JLabel("Vara:");
-		lblRemoveProduct.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblRemoveProduct.setBounds(17, 99, 73, 14);
-		panelRemoveCategory.add(lblRemoveProduct);
-
-		lblRemoveProductName = new JLabel("Namn");
-		lblRemoveProductName.setBounds(17, 124, 48, 14);
-		panelRemoveCategory.add(lblRemoveProductName);
-
-		JComboBox comboBoxRemoveProductName = new JComboBox();
-		comboBoxRemoveProductName.setBounds(85, 124, 99, 18);
-		panelRemoveCategory.add(comboBoxRemoveProductName);
-
-		JButton btnTaBort_1 = new JButton("Ta Bort");
-		btnTaBort_1.setBounds(17, 153, 89, 23);
-		panelRemoveCategory.add(btnTaBort_1);
-
-		JLabel lblEller = new JLabel("Eller");
-		lblEller.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEller.setBounds(17, 74, 48, 14);
-		panelRemoveCategory.add(lblEller);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 817, 461);
+		panelCategory.add(panel);
+		
+		JLabel label_1 = new JLabel("Ny kategori: ");
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_1.setBounds(10, 11, 79, 14);
+		panel.add(label_1);
+		
+		JLabel label_2 = new JLabel("Namn");
+		label_2.setBounds(10, 36, 48, 14);
+		panel.add(label_2);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(78, 33, 96, 20);
+		panel.add(textField);
+		
+		JButton button = new JButton("L\u00E4gg till kategori");
+		button.setBounds(10, 61, 164, 23);
+		panel.add(button);
+		
+		JLabel label_3 = new JLabel("Ny vara:");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_3.setBounds(10, 120, 48, 14);
+		panel.add(label_3);
+		
+		JLabel label_4 = new JLabel("Namn");
+		label_4.setBounds(10, 145, 48, 14);
+		panel.add(label_4);
+		
+		JLabel label_5 = new JLabel("Kategori");
+		label_5.setBounds(10, 221, 48, 14);
+		panel.add(label_5);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(78, 219, 96, 18);
+		panel.add(comboBox);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(78, 142, 96, 20);
+		panel.add(textField_1);
+		
+		JButton button_1 = new JButton("L\u00E4gg till vara");
+		button_1.setBounds(10, 258, 164, 23);
+		panel.add(button_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(78, 167, 96, 20);
+		panel.add(textField_2);
+		
+		JLabel label_6 = new JLabel("Varunummer");
+		label_6.setBounds(10, 170, 79, 14);
+		panel.add(label_6);
+		
+		JLabel label_7 = new JLabel("Leverant\u00F6r");
+		label_7.setBounds(10, 196, 79, 14);
+		panel.add(label_7);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(78, 195, 96, 18);
+		panel.add(comboBox_1);
 
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);

@@ -28,21 +28,33 @@ public class Controller {
 	}
 	
 	
-	public void registerNewInvoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
-		Invoice newInvoice = new Invoice (invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
+	public void registerNewInvoice(String supplierName, String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
+		Supplier supplier = supplierRegister.findSupplier(supplierName);
+		Invoice newInvoice = new Invoice (supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
 		invoiceRegister.addInvoice(newInvoice);
 	}
-	public void registerNewOrderLine(String invoiceNumber, Product product, int lineNumber, int amount) {
+	public void registerNewOrderLine(Product product, String invoiceNumber, int lineNumber, int amount) {
 		Invoice invoice = invoiceRegister.findInvoice(invoiceNumber);
-		Orderline orderLine = new OrderLine(invoice, product, lineNumber, amount);
+		OrderLine orderLine = new OrderLine(product, invoice, lineNumber, amount);
 		invoice.addOrderLine(orderLine);
 	}
 	public Invoice searchInvoice(String invoiceNumber) {
 		return invoiceRegister.findInvoice(invoiceNumber);
 	}
 	//The method removeInvoice() is not implemented in the graphical user interface but is kept in the controller in case it will be in the future.
-	public Invoice removeInvoice(String invoiceNumber) {
-		invoiceRegister.findInvoice(invoiceNumber)
+	public void removeInvoice(String invoiceNumber) {
+		invoiceRegister.removeInvoice(invoiceNumber);
 	}
-	
+	public void addSupplier(String name, String faxNumber, String telephoneNumber, String webAddress) {
+		Supplier supplier = new Supplier(name, faxNumber, telephoneNumber, webAddress);
+	}
+	public Supplier searchSupplier(String name) {
+		return supplierRegister.findSupplier(name);
+	}
+	public void removeSupplier(String name) {
+		supplierRegister.deleteSupplier(name);
+	}
+	public void addCategory(String name) {
+		categoryRegister.addCategory(new Category(name));
+	}
 }

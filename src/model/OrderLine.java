@@ -12,5 +12,4 @@ public class OrderLine {
 		this.lineNumber = lineNumber;
 		this.amount = amount;
 	}
-
 }
