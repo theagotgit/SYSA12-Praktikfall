@@ -21,5 +21,8 @@ public class InvoiceRegister {
 		}
 		return null;
 	}
+//	public Invoice editInvoice(String invoiceNumber, Calendar expiryDate, Calendar printDate, Calendar acknowledgementDate, Calendar deliveryDate) {
+		
+//	}
 }
 
