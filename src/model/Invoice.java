@@ -1,8 +1,11 @@
 package model;
 
 import java.util.Calendar;
+import java.util.*;
 
 public class Invoice {
+	private Supplier supplier;
+	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
 	private String invoiceNumber;
 	private Calendar expiryDate;
 	private Calendar printedDate;
@@ -54,5 +57,20 @@ public class Invoice {
 
 	public void setDeliveryDate(Calendar deliveryDate) {
 		this.deliveryDate = deliveryDate;
+	}
+	public Supplier getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+	public ArrayList<OrderLine> getOrderLine() {
+		return this.orderLines;
+	}
+	public void setOrderLine(ArrayList<OrderLine> orderLines) {
+		this.orderLines = orderLines;
+	}
+	public void addOrderLine(OrderLine orderLine) {
+		orderLines.add(orderLine);
 	}
 }
