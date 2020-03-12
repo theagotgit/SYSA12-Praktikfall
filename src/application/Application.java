@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JTable;
 
 public class Application {
 
@@ -38,6 +39,7 @@ public class Application {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTable tableReport;
 
 
 	/**
@@ -407,6 +409,9 @@ public class Application {
 		JScrollPane scrollPaneReport = new JScrollPane();
 		scrollPaneReport.setBounds(388, 11, 444, 489);
 		panelReport.add(scrollPaneReport);
+		
+		tableReport = new JTable();
+		scrollPaneReport.setViewportView(tableReport);
 
 		JLabel lblReportChooseDate = new JLabel("V\u00E4lj datum");
 		lblReportChooseDate.setBounds(10, 17, 72, 14);
