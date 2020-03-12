@@ -22,15 +22,14 @@ public class Application {
 
 	private JFrame frame;
 	private JTextField textFieldRegisterInvoiceNumber;
-	private JTextField textFieldNewCategoryName;
-	private JTextField textFieldNewProductName;
 	private JTextField textFieldFindInvoiceByInvoiceNumber;
 	private JTextField textFieldNewSupplierName;
 	private JTextField textFieldNewSupplierFax;
 	private JTextField textFieldNewSupplierNumber;
 	private JTextField textFieldNewSupplierSite;
-	private JLabel lblRemoveProductName;
-	private JTextField textFieldNewProductNumber;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.

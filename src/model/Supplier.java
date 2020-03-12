@@ -1,11 +1,21 @@
 package model;
 
-public class Supplier {
+import java.util.ArrayList;
 
+public class Supplier {
+	ArrayList<Invoice> invoices = new ArrayList<Invoice>();
+	ArrayList<Product> products = new ArrayList<Product>();
 	private String name;
 	private String faxNumber;
 	private String telephoneNumber;
 	private String webAddress;
+	
+	public Supplier (String name, String faxNumber, String telephoneNumber, String webAddress) {
+		this.name = name;
+		this.faxNumber = faxNumber;
+		this.telephoneNumber = telephoneNumber;
+		this.webAddress = webAddress;
+	}
 	
 	public String getName() {
 		return name;
@@ -31,11 +41,28 @@ public class Supplier {
 	public void setWebAddress(String webAddress) {
 		this.webAddress = webAddress;
 	}
-	
-	
-	
-
-
-
-
+	public ArrayList<Invoice> getInvoices(){
+		return this.invoices;
+	}
+	public void setInvoices(ArrayList<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+	public ArrayList<Product> getProducts(){
+		return this.products;
+	}
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+	public void addInvoice (Invoice invoice) {
+		invoices.add(invoice);
+	}
+	public void addProduct (Product product) {
+		products.add(product);
+	}
+	public void removeInvoice (Invoice invoice) {
+		invoices.remove(invoice);
+	}
+	public void removeProduct (Product product) {
+		products.remove(product);
+	}
 }
