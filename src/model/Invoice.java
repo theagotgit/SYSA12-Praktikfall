@@ -3,11 +3,11 @@ package model;
 import java.util.Calendar;
 
 public class Invoice {
-	String invoiceNumber;
-	Calendar expiryDate;
-	Calendar printedDate;
-	Calendar acknowledgementDate;
-	Calendar deliveryDate;
+	private String invoiceNumber;
+	private Calendar expiryDate;
+	private Calendar printedDate;
+	private Calendar acknowledgementDate;
+	private Calendar deliveryDate;
 	
 	public Invoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliverydate) {
 		this.invoiceNumber = invoiceNumber;
@@ -16,5 +16,4 @@ public class Invoice {
 		this.acknowledgementDate = acknowledgementDate;
 		this.deliveryDate = deliveryDate;
 	}
-
 }
