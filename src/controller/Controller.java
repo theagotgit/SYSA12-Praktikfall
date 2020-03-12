@@ -8,6 +8,10 @@ public class Controller {
 	private SupplierRegister supplierRegister;
 	private CategoryRegister categoryRegister;
 	
+	public InvoiceRegister getInvoiceRegister() {
+		return this.invoiceRegister;
+	}
+	
 	public void registerNewInvoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
 		Invoice newInvoice = new Invoice (invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
 		invoiceRegister.addInvoice(newInvoice);
