@@ -44,8 +44,17 @@ public class Controller {
 	public void removeInvoice(String invoiceNumber) {
 		invoiceRegister.removeInvoice(invoiceNumber);
 	}
-	public void addSupplier(String name) {
-		Supplier supplier = new Supplier(name);
+	public void addSupplier(String name, String faxNumber, String telephoneNumber, String webAddress) {
+		Supplier supplier = new Supplier(name, faxNumber, telephoneNumber, webAddress);
 	}
-	
+	public Supplier searchSupplier(String name) {
+		return supplierRegister.findSupplier(name);
+	}
+	public void removeSupplier(String name) {
+		supplierRegister.deleteSupplier(name);
+	}
+	public void addCategory(String name) {
+		categoryRegister.addCategory(new Category(name));
+	}
+	public void addProduct(Category category, )
 }
