@@ -28,8 +28,9 @@ public class Controller {
 	}
 	
 	
-	public void registerNewInvoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
-		Invoice newInvoice = new Invoice (invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
+	public void registerNewInvoice(String supplierName, String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
+		Supplier supplier = supplierRegister.findSupplier(supplierName);
+		Invoice newInvoice = new Invoice (supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
 		invoiceRegister.addInvoice(newInvoice);
 	}
 	public void registerNewOrderLine(Product product, String invoiceNumber, int lineNumber, int amount) {
@@ -56,5 +57,4 @@ public class Controller {
 	public void addCategory(String name) {
 		categoryRegister.addCategory(new Category(name));
 	}
-	public void addProduct(Category category, )
 }
