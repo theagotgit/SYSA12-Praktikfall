@@ -345,7 +345,7 @@ public class Application {
 		lblNewCategoryName.setBounds(10, 36, 48, 14);
 		panelRegisterNewCategory.add(lblNewCategoryName);
 
-		textFieldNewCategoryName = new JTextField();
+		JTextField textFieldNewCategoryName = new JTextField();
 		textFieldNewCategoryName.setBounds(78, 33, 96, 20);
 		panelRegisterNewCategory.add(textFieldNewCategoryName);
 		textFieldNewCategoryName.setColumns(10);
@@ -371,7 +371,7 @@ public class Application {
 		comboBoxNewProductCategory.setBounds(78, 219, 96, 18);
 		panelRegisterNewCategory.add(comboBoxNewProductCategory);
 
-		textFieldNewProductName = new JTextField();
+		JTextField textFieldNewProductName = new JTextField();
 		textFieldNewProductName.setBounds(78, 142, 96, 20);
 		panelRegisterNewCategory.add(textFieldNewProductName);
 		textFieldNewProductName.setColumns(10);
@@ -380,7 +380,7 @@ public class Application {
 		btnAddProduct.setBounds(10, 258, 164, 23);
 		panelRegisterNewCategory.add(btnAddProduct);
 
-		textFieldNewProductNumber = new JTextField();
+		JTextField textFieldNewProductNumber = new JTextField();
 		textFieldNewProductNumber.setBounds(78, 167, 96, 20);
 		panelRegisterNewCategory.add(textFieldNewProductNumber);
 		textFieldNewProductNumber.setColumns(10);
@@ -419,7 +419,7 @@ public class Application {
 		lblRemoveProduct.setBounds(17, 99, 73, 14);
 		panelRemoveCategory.add(lblRemoveProduct);
 
-		lblRemoveProductName = new JLabel("Namn");
+		JLabel lblRemoveProductName = new JLabel("Namn");
 		lblRemoveProductName.setBounds(17, 124, 48, 14);
 		panelRemoveCategory.add(lblRemoveProductName);
 
