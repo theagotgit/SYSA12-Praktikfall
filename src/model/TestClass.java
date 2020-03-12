@@ -66,6 +66,8 @@ public class TestClass {
 	   	 
 	   	 Invoice d = invoiceRegister.deleteInvoice("ett");
 	   	 System.out.println("Förfallodatum: " + d.getExpiryDate().getTime());
+	   	 
+	   	 
 
 
 	}
