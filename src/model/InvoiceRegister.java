@@ -21,8 +21,8 @@ public class InvoiceRegister {
 		}
 		return null;
 	}
-//	public Invoice editInvoice(String invoiceNumber, Calendar expiryDate, Calendar printDate, Calendar acknowledgementDate, Calendar deliveryDate) {
-		
-//	}
+	public void removeInvoice(String invoiceNumber) {
+		invoices.remove(this.findInvoice(invoiceNumber));
+	}
 }
 

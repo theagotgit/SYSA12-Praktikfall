@@ -4,22 +4,26 @@ import java.util.ArrayList;
 
 public class SupplierRegister {
 
-	private ArrayList<Supplier> supplierlist = new ArrayList<Supplier>();
+	private ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+	
+	public SupplierRegister (ArrayList<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
 
 	public ArrayList<Supplier> getSupplierlist() {
-		return supplierlist;
+		return suppliers;
 	}
 
 	public void setSupplierlist(ArrayList<Supplier> supplierlist) {
-		this.supplierlist = supplierlist;
+		this.suppliers = supplierlist;
 	}
 
 	public void addSupplier(Supplier supplier) {
-		supplierlist.add(supplier);
+		suppliers.add(supplier);
 	}
 
 	public Supplier findSupplier(String supplierName) {
-		for (Supplier s : supplierlist) {
+		for (Supplier s : suppliers) {
 			if (s.getName().equals(supplierName)) {
 				return s;
 			}
@@ -29,7 +33,7 @@ public class SupplierRegister {
 	
 	public Supplier deleteSupplier(String SupplierName) {
 		Supplier s = this.findSupplier(SupplierName);
-		supplierlist.remove(s);
+		suppliers.remove(s);
 		return s;
 	}
 
