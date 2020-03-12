@@ -4,6 +4,9 @@ import java.util.*;
 public class InvoiceRegister {
 	private ArrayList<Invoice> invoices = new ArrayList<Invoice>();
 	
+	public InvoiceRegister (ArrayList<Invoice> invoices) {
+		this.setInvoice(invoices);
+	}
 	public ArrayList<Invoice> getInvoice() {
 		return this.invoices;
 	}
