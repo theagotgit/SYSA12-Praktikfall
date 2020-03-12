@@ -9,7 +9,7 @@ public class Invoice {
 	private Calendar acknowledgementDate;
 	private Calendar deliveryDate;
 	
-	public Invoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliverydate) {
+	public Invoice(String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
 		this.setInvoiceNumber(invoiceNumber);
 		this.setExpiryDate(expiryDate);
 		this.setPrintedDate(printedDate);
