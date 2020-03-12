@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class CategoryRegister {
 	private ArrayList<Category> categories = new ArrayList<Category>();
+	
+	//Custom constructor
+	public CategoryRegister(ArrayList<Category> categories) {
+		this.categories = categories;
+	}
 
 	public ArrayList<Category> getCategories() {
 		return categories;
