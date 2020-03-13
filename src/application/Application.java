@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import controller.Controller;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -30,7 +33,7 @@ public class Application {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
+	private Controller controller;
 
 	/**
 	 * Launch the application.
@@ -64,6 +67,7 @@ public class Application {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		controller = new Controller();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 879, 596);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,11 +102,11 @@ public class Application {
 		panelNewInvoice.add(lblRegisterProduct);
 
 		JLabel lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
-		lblRegisterInvoiceCopy.setBounds(10, 138, 87, 14);
+		lblRegisterInvoiceCopy.setBounds(10, 157, 87, 14);
 		panelNewInvoice.add(lblRegisterInvoiceCopy);
 
 		JLabel lblRegisterSupplier = new JLabel("Leverant\u00F6r");
-		lblRegisterSupplier.setBounds(10, 113, 87, 14);
+		lblRegisterSupplier.setBounds(10, 132, 87, 14);
 		panelNewInvoice.add(lblRegisterSupplier);
 
 		JLabel lblRegisterSentDate = new JLabel("Skickat datum");
@@ -135,11 +139,11 @@ public class Application {
 		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
 
 		JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
-		lblRegisterReceivedDate.setBounds(10, 63, 87, 14);
+		lblRegisterReceivedDate.setBounds(10, 61, 87, 14);
 		panelNewInvoice.add(lblRegisterReceivedDate);
 
 		JLabel lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
-		lblRegisterExpirationDate.setBounds(10, 88, 96, 14);
+		lblRegisterExpirationDate.setBounds(10, 86, 96, 14);
 		panelNewInvoice.add(lblRegisterExpirationDate);
 
 		JButton btnRegisterInvoice = new JButton("Registrera");
@@ -149,6 +153,10 @@ public class Application {
 		});
 		btnRegisterInvoice.setBounds(10, 280, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
+		
+		JLabel lbl = new JLabel("Utskriftsdatum");
+		lbl.setBounds(10, 107, 87, 14);
+		panelNewInvoice.add(lbl);
 
 		JPanel panelSearchInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("S\u00F6k Faktura", null, panelSearchInvoice, null);
@@ -161,10 +169,6 @@ public class Application {
 		JTextArea textAreaSearchInvoice = new JTextArea();
 		scrollPaneFindInvoice.setViewportView(textAreaSearchInvoice);
 
-		JLabel lblFindInvoiceByProduct = new JLabel("Vara");
-		lblFindInvoiceByProduct.setBounds(10, 59, 48, 14);
-		panelSearchInvoice.add(lblFindInvoiceByProduct);
-
 		JLabel lblFIndInvoiceNumber = new JLabel("Fakturanummer");
 		lblFIndInvoiceNumber.setBounds(10, 9, 89, 14);
 		panelSearchInvoice.add(lblFIndInvoiceNumber);
@@ -172,10 +176,6 @@ public class Application {
 		JLabel lblFindInvoiceByCategory = new JLabel("Kategori");
 		lblFindInvoiceByCategory.setBounds(10, 34, 48, 14);
 		panelSearchInvoice.add(lblFindInvoiceByCategory);
-
-		JComboBox comboBoxFindInvoiceByProduct = new JComboBox();
-		comboBoxFindInvoiceByProduct.setBounds(108, 56, 96, 20);
-		panelSearchInvoice.add(comboBoxFindInvoiceByProduct);
 
 		JComboBox comboBoxFindInvoiceByCategory = new JComboBox();
 		comboBoxFindInvoiceByCategory.setBounds(108, 32, 96, 18);
@@ -187,10 +187,24 @@ public class Application {
 		textFieldFindInvoiceByInvoiceNumber.setColumns(10);
 
 		JButton btnFindInvoice = new JButton("Hitta Faktura");
-		btnFindInvoice.setBounds(10, 92, 194, 23);
+		btnFindInvoice.setBounds(10, 59, 194, 23);
 		panelSearchInvoice.add(btnFindInvoice);
 		btnFindInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String invoiceNumber = textFieldFindInvoiceByInvoiceNumber.getText();
+				String category = (String)comboBoxFindInvoiceByCategory.getSelectedItem();
+				if (!invoiceNumber.equals("") && category == null) {
+					if (controller.getInvoiceRegister().findInvoice(invoiceNumber) == null) {
+						//Felmeddelande
+					} else {
+						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nFörfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
+						textAreaSearchInvoice.setText(print);
+					}
+				} else if (category != null && invoiceNumber.equals("")) {
+					textAreaSearchInvoice.setText(controller.searchCategory(category));
+				} else {
+					//felmeddelande till användaren
+				}
 			}
 		});
 
