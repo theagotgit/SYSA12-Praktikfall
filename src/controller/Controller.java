@@ -108,9 +108,36 @@ public class Controller {
 		return result;
 	}
 	
-	
-	public String[] updateComboBoxes () {
-		//For updating the first combo box
+	//Returns an array with arrays which can be synched with comboboxes in Application.java.
+	public String[][] updateComboBoxes () {
+		//For updating comboboxes with suppliers 
+		String[] suppliers = new String[supplierRegister.getSupplierlist().size()];
+		for (int i = 0; i < supplierRegister.getSupplierlist().size(); i++) {
+			suppliers[i] = supplierRegister.getSupplierlist().get(i).getName();
+		}
+		
+		//For updating comboboxes with products
+		ArrayList<Product> productList = new ArrayList<Product>();
+		for (Supplier supplier : supplierRegister.getSupplierlist()) {
+			for (Product product : supplier.getProducts()) {
+				if (productList.indexOf(product) == -1) {
+					productList.add(product);
+				}
+			}
+		}
+		String[] products = new String[productList.size()];
+		for (int i = 0; i < productList.size(); i++) {
+			products[i] = productList.get(i).getName() + ", " + productList.get(i).getProductNumber();
+		}
+		
+		//For updating comboboxes with categories
+		String[] categories = new String[categoryRegister.getCategories().size()];
+		for (int i = 0; i < categoryRegister.getCategories().size(); i++) {
+			suppliers[i] = categoryRegister.getCategories().get(i).getName();
+		}
+		
+		//For updating comboboxes with invoices
+		
 
 	}
 	
