@@ -39,5 +39,21 @@ public class CategoryRegister {
 		category.setName(newCategoryName);
 		return category;
 	}
+	public Product findProduct(Supplier supplier, String productNumber) {
+		for (Category category : categories) {
+			Product product = category.findProduct(supplier, productNumber);
+			if (product != null) {
+				return product;
+			}
+		}
+		return null;
+	}
+	public void removeProduct(Supplier supplier, String productNumber) {
+		for (Category category : categories) {
+			if (category.findProduct(supplier,  productNumber) != null) {
+				category.removeProduct(supplier, productNumber);
+			}
+		}
+	}
 }
 

@@ -1,12 +1,14 @@
 package model;
 
 public class Product {
+	private Category category;
 	private Supplier supplier;	
 	private String productNumber;
 	private double unitPrice;
 	private String name;
 	
-	public Product (Supplier supplier, String productNumber, double unitPrice, String name) {
+	public Product (Category category, Supplier supplier, String productNumber, double unitPrice, String name) {
+		this.setCategory(category);
 		this.setSupplier(supplier);
 		this.setProductNumber(productNumber);
 		this.setUnitPrice(unitPrice);
@@ -35,5 +37,11 @@ public class Product {
 	}
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }
