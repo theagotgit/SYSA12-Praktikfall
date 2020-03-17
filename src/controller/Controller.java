@@ -85,6 +85,26 @@ public class Controller {
 		}
 		return new DefaultTableModel(allSupplierData, supplierTableColumns);
 	}
+	
+	public DefaultTableModel filterSuppliersByCategory(String categoryName) {
+		//Sorting all suppliers alphabetically by name.
+		TreeMap<String, Supplier> sortedSuppliers = new TreeMap<String, Supplier>();
+		for (Supplier tmp : supplierRegister.getSupplierlist()) {
+			sortedSuppliers.put(tmp.getName(), tmp);
+		}
+
+		String[][] allSupplierData = new String[sortedSuppliers.keySet().size()][supplierTableColumns.length];
+		int i = 0;
+		for (Map.Entry<String, Supplier> tmp : sortedSuppliers.entrySet()) {
+			allSupplierData[i][0] = tmp.getKey();
+			allSupplierData[i][1] = tmp.getValue().getTelephoneNumber();
+			allSupplierData[i][2] = tmp.getValue().getFaxNumber();
+			allSupplierData[i][3] = tmp.getValue().getWebAddress();
+			i++;
+		}
+		return new DefaultTableModel(allSupplierData, supplierTableColumns);
+	}
+	
 	public void removeSupplier(String name) {
 		supplierRegister.deleteSupplier(name);
 	}
