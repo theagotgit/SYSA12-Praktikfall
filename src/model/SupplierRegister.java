@@ -9,6 +9,7 @@ public class SupplierRegister {
 	public SupplierRegister (ArrayList<Supplier> suppliers) {
 		this.suppliers = suppliers;
 	}
+	public SupplierRegister() {};
 	public ArrayList<Supplier> getSupplierlist() {
 		return suppliers;
 	}

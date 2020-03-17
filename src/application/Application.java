@@ -37,8 +37,12 @@ public class Application {
 	private JTextField textFieldNewSupplierNumber;
 	private JTextField textFieldNewSupplierSite;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+
+	private JTextField textFieldProductName;
+	private JTextField textFieldProductNumber;
+
+	private Controller controller;
+
 	private JTable tableReport;
 
 
@@ -98,32 +102,32 @@ public class Application {
 		JPanel panelNewInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
 		panelNewInvoice.setLayout(null);
-		
-		
+
+
 		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
 		Properties p = new Properties();
 		p.put("text.today", "Idag");
 		p.put("text.month", "Månad");
 		p.put("text.year", "År");
-		
+
 		UtilDateModel dateModelReceived = new UtilDateModel();
 		JDatePanelImpl datePanelReceived = new JDatePanelImpl(dateModelReceived, p);
 		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
 		datePickerReceived.setBounds(107, 76, 202, 29);
 		panelNewInvoice.add(datePickerReceived);
-		
+
 		UtilDateModel dateModelPrinted = new UtilDateModel();
 		JDatePanelImpl datePanelPrinted = new JDatePanelImpl(dateModelPrinted, p);
 		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
 		datePickerPrinted.setBounds(107, 36, 202, 29);
 		panelNewInvoice.add(datePickerPrinted);
-		
+
 		UtilDateModel dateModelExpiryDate = new UtilDateModel();
 		JDatePanelImpl datePanelExpiryDate = new JDatePanelImpl(dateModelExpiryDate, p);
 		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
 		datePickerExpiryDate.setBounds(107, 116, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
-		
+
 		UtilDateModel dateModelDelivery = new UtilDateModel();
 		JDatePanelImpl datePanelDelivery = new JDatePanelImpl(dateModelDelivery, p);
 		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
@@ -186,11 +190,12 @@ public class Application {
 		JButton btnRegisterInvoice = new JButton("Registrera");
 		btnRegisterInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 		btnRegisterInvoice.setBounds(10, 382, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
-		
+
 		JLabel lblLeveransdatum = new JLabel("Leveransdatum");
 		lblLeveransdatum.setBounds(10, 158, 87, 14);
 		panelNewInvoice.add(lblLeveransdatum);
@@ -228,6 +233,22 @@ public class Application {
 		panelSearchInvoice.add(btnFindInvoice);
 		btnFindInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				String invoiceNumber = textFieldFindInvoiceByInvoiceNumber.getText();
+				String category = (String)comboBoxFindInvoiceByCategory.getSelectedItem();
+				if (!invoiceNumber.equals("") && category == null) {
+					if (controller.getInvoiceRegister().findInvoice(invoiceNumber) == null) {
+						//Felmeddelande
+					} else {
+						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nF�rfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
+						textAreaSearchInvoice.setText(print);
+					}
+				} else if (category != null && invoiceNumber.equals("")) {
+					textAreaSearchInvoice.setText(controller.searchCategory(category));
+				} else {
+					//felmeddelande till anv�ndaren
+				}
+
 			}
 		});
 
@@ -333,83 +354,120 @@ public class Application {
 		JPanel panelCategory = new JPanel();
 		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);
 		panelCategory.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 817, 461);
 		panelCategory.add(panel);
-		
+
 		JLabel label_1 = new JLabel("Ny kategori: ");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_1.setBounds(10, 11, 79, 14);
 		panel.add(label_1);
-		
+
 		JLabel label_2 = new JLabel("Namn");
 		label_2.setBounds(10, 36, 48, 14);
 		panel.add(label_2);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(78, 33, 96, 20);
 		panel.add(textField);
-		
+
+
+		JLabel lblAddCategoryResponse = new JLabel("");
+		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
+		panel.add(lblAddCategoryResponse);
+
+		JLabel lblErrorMessage = new JLabel("");
+		lblErrorMessage.setForeground(Color.RED);
+		lblErrorMessage.setBounds(10, 292, 280, 14);
+		panel.add(lblErrorMessage);
+
 		JButton button = new JButton("L\u00E4gg till kategori");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String categoryName = textField.getText();
+				if (categoryName.equals("")) {
+					lblErrorMessage.setText("V�nligen ange ett namn.");
+					lblAddCategoryResponse.setText("");
+				} else if (controller.getCategoryRegister().findCategory(categoryName) != null) {
+					lblErrorMessage.setText("Kategorin " + categoryName + " finns redan.");
+					lblAddCategoryResponse.setText("");
+				} else {
+					controller.addCategory(categoryName);
+					lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
+					lblErrorMessage.setText("");
+				}
+			}
+		});
 		button.setBounds(10, 61, 164, 23);
 		panel.add(button);
-		
+
 		JLabel label_3 = new JLabel("Ny vara:");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_3.setBounds(10, 120, 48, 14);
 		panel.add(label_3);
-		
+
 		JLabel label_4 = new JLabel("Namn");
 		label_4.setBounds(10, 145, 48, 14);
 		panel.add(label_4);
-		
+
 		JLabel label_5 = new JLabel("Kategori");
 		label_5.setBounds(10, 221, 48, 14);
 		panel.add(label_5);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(78, 219, 96, 18);
-		panel.add(comboBox);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(78, 142, 96, 20);
-		panel.add(textField_1);
-		
-		JButton button_1 = new JButton("L\u00E4gg till vara");
-		button_1.setBounds(10, 258, 164, 23);
-		panel.add(button_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(78, 167, 96, 20);
-		panel.add(textField_2);
-		
+
+
+		JComboBox comboBoxAddProductCategory = new JComboBox();
+		comboBoxAddProductCategory.setBounds(78, 219, 96, 18);
+		panel.add(comboBoxAddProductCategory);
+
+		textFieldProductName = new JTextField();
+		textFieldProductName.setColumns(10);
+		textFieldProductName.setBounds(78, 142, 96, 20);
+		panel.add(textFieldProductName);
+
+		JButton buttonAddProduct = new JButton("L\u00E4gg till vara");
+		buttonAddProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String productName = textFieldProductName.getText();
+
+			}
+		});
+		buttonAddProduct.setBounds(10, 258, 164, 23);
+		panel.add(buttonAddProduct);
+
+		textFieldProductNumber = new JTextField();
+		textFieldProductNumber.setColumns(10);
+		textFieldProductNumber.setBounds(78, 167, 96, 20);
+		panel.add(textFieldProductNumber);
+
 		JLabel label_6 = new JLabel("Varunummer");
 		label_6.setBounds(10, 170, 79, 14);
 		panel.add(label_6);
-		
+
 		JLabel label_7 = new JLabel("Leverant\u00F6r");
 		label_7.setBounds(10, 196, 79, 14);
 		panel.add(label_7);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(78, 195, 96, 18);
-		panel.add(comboBox_1);
+
+
+		JComboBox comboBoxAddProductSupplier = new JComboBox();
+		comboBoxAddProductSupplier.setBounds(78, 195, 96, 18);
+		panel.add(comboBoxAddProductSupplier);
+
+
+
 
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);
 		panelReport.setLayout(null);
-		
+
 		UtilDateModel dateModelReportStartDate = new UtilDateModel();
 		JDatePanelImpl datePanelReportStartDate = new JDatePanelImpl(dateModelReportStartDate, p);
 		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanelReportStartDate, dateLabelFormatter);
 		datePickerReportStartDate.setBounds(92, 11, 202, 29);
 		panelReport.add(datePickerReportStartDate);
-		
+
 		UtilDateModel dateModelReportEndDate = new UtilDateModel();
 		JDatePanelImpl datePanelReportEndDate = new JDatePanelImpl(dateModelReportEndDate, p);
 		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanelReportEndDate, dateLabelFormatter);
@@ -419,7 +477,7 @@ public class Application {
 		JScrollPane scrollPaneReport = new JScrollPane();
 		scrollPaneReport.setBounds(388, 11, 444, 489);
 		panelReport.add(scrollPaneReport);
-		
+
 		tableReport = new JTable();
 		scrollPaneReport.setViewportView(tableReport);
 
