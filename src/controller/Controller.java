@@ -135,10 +135,9 @@ public class Controller {
 		for (int i = 0; i < categoryRegister.getCategories().size(); i++) {
 			suppliers[i] = categoryRegister.getCategories().get(i).getName();
 		}
+		String[][] result = {suppliers, products, categories};
 		
-		//For updating comboboxes with invoices
-		
-
+		return result;
 	}
 	
 	

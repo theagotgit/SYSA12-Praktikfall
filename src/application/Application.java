@@ -13,6 +13,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import controller.Controller;
 import controller.DateLabelFormatter;
 
 import javax.swing.JComboBox;
@@ -44,6 +45,10 @@ public class Application {
 	private Controller controller;
 
 	private JTable tableReport;
+	
+	public void updateComboBoxes(Controller controller) {
+		
+	}
 
 
 	/**
@@ -73,11 +78,14 @@ public class Application {
 	public Application() {
 		initialize();
 	}
-
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
+		controller = new Controller();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 879, 596);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
