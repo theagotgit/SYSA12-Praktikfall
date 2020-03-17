@@ -99,28 +99,34 @@ public class Application {
 		tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
 		panelNewInvoice.setLayout(null);
 		
-		UtilDateModel dateModel = new UtilDateModel();
+		
 		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
 		Properties p = new Properties();
 		p.put("text.today", "Idag");
 		p.put("text.month", "Månad");
 		p.put("text.year", "År");
-
-		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
 		
-		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReceived = new UtilDateModel();
+		JDatePanelImpl datePanelReceived = new JDatePanelImpl(dateModelReceived, p);
+		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
 		datePickerReceived.setBounds(107, 76, 202, 29);
 		panelNewInvoice.add(datePickerReceived);
 		
-		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelPrinted = new UtilDateModel();
+		JDatePanelImpl datePanelPrinted = new JDatePanelImpl(dateModelPrinted, p);
+		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
 		datePickerPrinted.setBounds(107, 36, 202, 29);
 		panelNewInvoice.add(datePickerPrinted);
 		
-		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelExpiryDate = new UtilDateModel();
+		JDatePanelImpl datePanelExpiryDate = new JDatePanelImpl(dateModelExpiryDate, p);
+		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
 		datePickerExpiryDate.setBounds(107, 116, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
 		
-		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelDelivery = new UtilDateModel();
+		JDatePanelImpl datePanelDelivery = new JDatePanelImpl(dateModelDelivery, p);
+		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
 		datePickerDelivery.setBounds(107, 156, 202, 29);
 		panelNewInvoice.add(datePickerDelivery);
 
@@ -185,9 +191,9 @@ public class Application {
 		btnRegisterInvoice.setBounds(10, 382, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
 		
-		JLabel lblLeveransdatum = new JLabel("Leveransdatum");
-		lblLeveransdatum.setBounds(10, 158, 87, 14);
-		panelNewInvoice.add(lblLeveransdatum);
+		JLabel lblRegisterDeliveredDate = new JLabel("Leveransdatum");
+		lblRegisterDeliveredDate.setBounds(10, 158, 87, 14);
+		panelNewInvoice.add(lblRegisterDeliveredDate);
 
 		JPanel panelSearchInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("S\u00F6k Faktura", null, panelSearchInvoice, null);
@@ -398,11 +404,15 @@ public class Application {
 		tabbedPane.addTab("Rapport", null, panelReport, null);
 		panelReport.setLayout(null);
 		
-		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReportStartDate = new UtilDateModel();
+		JDatePanelImpl datePanelReportStartDate = new JDatePanelImpl(dateModelReportStartDate, p);
+		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanelReportStartDate, dateLabelFormatter);
 		datePickerReportStartDate.setBounds(92, 11, 202, 29);
 		panelReport.add(datePickerReportStartDate);
 		
-		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReportEndDate = new UtilDateModel();
+		JDatePanelImpl datePanelReportEndDate = new JDatePanelImpl(dateModelReportEndDate, p);
+		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanelReportEndDate, dateLabelFormatter);
 		datePickerReportEndDate.setBounds(92, 51, 202, 29);
 		panelReport.add(datePickerReportEndDate);
 
