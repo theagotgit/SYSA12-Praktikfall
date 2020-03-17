@@ -191,6 +191,7 @@ public class Application {
 		JButton btnRegisterInvoice = new JButton("Registrera");
 		btnRegisterInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnRegisterInvoice.setBounds(10, 382, 193, 23);
@@ -240,7 +241,7 @@ public class Application {
 					if (controller.getInvoiceRegister().findInvoice(invoiceNumber) == null) {
 						//Felmeddelande
 					} else {
-						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nFï¿½rfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
+						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nFörfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
 						textAreaSearchInvoice.setText(print);
 					}
 				} else if (category != null && invoiceNumber.equals("")) {
@@ -372,8 +373,19 @@ public class Application {
 		textField.setColumns(10);
 		textField.setBounds(78, 33, 96, 20);
 		panel.add(textField);
+		
+		JLabel lblAddCategoryResponse = new JLabel("");
+		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
+		panel.add(lblAddCategoryResponse);
 
 		JButton button = new JButton("L\u00E4gg till kategori");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String categoryName = textField.getText();
+				controller.addCategory(categoryName);
+				lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
+			}
+		});
 		button.setBounds(10, 61, 164, 23);
 		panel.add(button);
 
