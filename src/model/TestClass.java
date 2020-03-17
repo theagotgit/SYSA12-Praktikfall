@@ -55,8 +55,9 @@ public class TestClass {
 	   	  Calendar deliveryDate = Calendar.getInstance();
 	   	  deliveryDate.add(Calendar.DATE, -1);
 	    	 
-	   	 Invoice a = new Invoice("ett", expiryDate, printedDate, acknowledgementDate, deliveryDate);
-	   	 Invoice b = new Invoice("två", expiryDate, printedDate, acknowledgementDate, deliveryDate);
+	   	 Invoice a = new Invoice(s, "ett", expiryDate, printedDate, acknowledgementDate, deliveryDate);
+	   	 Invoice b = new Invoice(z, "två", expiryDate, printedDate, acknowledgementDate, deliveryDate);
+	   	 //Koppla supplier med invoice
 	   	 
 	   	 invoiceRegister.addInvoice(a);
 	   	 invoiceRegister.addInvoice(b);
@@ -64,7 +65,7 @@ public class TestClass {
 	   	 Invoice c = invoiceRegister.findInvoice("ett");
 	   	 System.out.println(c.getAcknowledgementDate().getTime());
 	   	 
-	   	 Invoice d = invoiceRegister.deleteInvoice("ett");
+	   	 Invoice d = invoiceRegister.removeInvoice("ett");
 	   	 System.out.println("Förfallodatum: " + d.getExpiryDate().getTime());
 	   	 
 	   	 
