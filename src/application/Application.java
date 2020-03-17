@@ -477,14 +477,34 @@ public class Application {
 		btnNewSupplier.setBounds(10, 124, 227, 23);
 		panelRegisterNewSupplier.add(btnNewSupplier);
 		
-
 		JPanel panelSearchSupplier = new JPanel();
 		tabbedPaneInsideSuppliers.addTab("S\u00F6k Leverant\u00F6r", null, panelSearchSupplier, null);
 		panelSearchSupplier.setLayout(null);
+		
+		JLabel lblErrorInSearchForSupplier = new JLabel("");
+		lblErrorInSearchForSupplier.setForeground(Color.RED);
+		lblErrorInSearchForSupplier.setBounds(10, 105, 48, 14);
+		panelSearchSupplier.add(lblErrorInSearchForSupplier);
 
 		JButton btnSortSupplier = new JButton("Sortera");
 		btnSortSupplier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (comboBoxSearchSupplierByProduct.getSelectedItem() == null && comboBoxSearchSupplierByCategory.getSelectedItem() == null) {
+					lblErrorInSearchForSupplier.setText("Vänligen välj en kategori eller en vara.");
+				}
+				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null && comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+					lblErrorInSearchForSupplier.setText("Vänligen välj endast en kategori eller en vara.");
+					comboBoxSearchSupplierByProduct.setSelectedItem(null);
+					comboBoxSearchSupplierByCategory.setSelectedItem(null);
+				}
+				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
+					lblErrorInSearchForSupplier.setText("");
+				}
+				else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
+					lblErrorInSearchForSupplier.setText("");
+				}
 			}
 		});
 		btnSortSupplier.setBounds(10, 71, 80, 23);
@@ -525,6 +545,8 @@ public class Application {
 		
 		tableSearchSuppliers = new JTable();
 		scrollPaneSearchSuppliers.setViewportView(tableSearchSuppliers);
+		
+		
 
 		JPanel panelCategory = new JPanel();
 		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);

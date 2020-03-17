@@ -8,7 +8,6 @@ public class InvoiceRegister {
 	public InvoiceRegister (ArrayList<Invoice> invoices) {
 		this.setInvoices(invoices);
 	}
-	public InvoiceRegister() {};
 	public ArrayList<Invoice> getInvoice() {
 		return this.invoices;
 	}
