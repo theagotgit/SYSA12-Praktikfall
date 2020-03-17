@@ -33,7 +33,7 @@ public class Controller {
 	
 	public void registerNewInvoice(String supplierName, String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
 		Supplier supplier = supplierRegister.findSupplier(supplierName);
-		Invoice newInvoice = new Invoice (supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
+		Invoice newInvoice = new Invoice(supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
 		invoiceRegister.addInvoice(newInvoice);
 	}
 	public void registerNewOrderLine(Product product, String invoiceNumber, int lineNumber, int amount) {
