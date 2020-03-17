@@ -145,14 +145,15 @@ public class Controller {
 			DefaultComboBoxModel supplierModel = new DefaultComboBoxModel();
 			comboboxModels.add(supplierModel);
 		} else {
-			String[] suppliers = new String[supplierRegister.getSupplierlist().size()];
-			for (int i = 0; i < supplierRegister.getSupplierlist().size(); i++) {
+			String[] suppliers = new String[(supplierRegister.getSupplierlist().size() + 1)];
+			suppliers[0] = "";
+			for (int i = 1; i < supplierRegister.getSupplierlist().size(); i++) {
 				suppliers[i] = supplierRegister.getSupplierlist().get(i).getName();
 			}
 			DefaultComboBoxModel supplierModel = new DefaultComboBoxModel(suppliers);
 			comboboxModels.add(supplierModel);
 		}
-		
+		//Lägg till "" i början på varje sån här.
 		
 		
 		//For updating comboboxes with products
@@ -168,8 +169,9 @@ public class Controller {
 					}
 				}
 			}
-			String[] products = new String[productList.size()];
-			for (int i = 0; i < productList.size(); i++) {
+			String[] products = new String[(productList.size() + 1)];
+			products[0] = "";
+			for (int i = 1; i < productList.size(); i++) {
 				products[i] = productList.get(i).getName() + ", " + productList.get(i).getProductNumber();
 			}
 			DefaultComboBoxModel productsModel = new DefaultComboBoxModel(products);
@@ -177,12 +179,13 @@ public class Controller {
 		}
 		
 		//For updating comboboxes with categories
-		String[] categories = new String[categoryRegister.getCategories().size()];
+		String[] categories = new String[(categoryRegister.getCategories().size() + 1)];
+		categories[0] = "";
 		if (categoryRegister.getCategories().isEmpty()) {
 			DefaultComboBoxModel categoriesModel = new DefaultComboBoxModel();
 			comboboxModels.add(categoriesModel);
 		} else {
-			for (int i = 0; i < categoryRegister.getCategories().size(); i++) {
+			for (int i = 1; i < categoryRegister.getCategories().size(); i++) {
 				categories[i] = categoryRegister.getCategories().get(i).getName();
 			}
 			DefaultComboBoxModel categoriesModel = new DefaultComboBoxModel(categories);

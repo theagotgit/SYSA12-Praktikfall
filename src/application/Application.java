@@ -245,7 +245,7 @@ public class Application {
 		panelNewInvoice.add(textFieldRegisterInvoiceNumber);
 		textFieldRegisterInvoiceNumber.setColumns(10);
 
-		JComboBox comboBoxRegisterNewInvoiceSupplier = new JComboBox();
+		comboBoxRegisterNewInvoiceSupplier = new JComboBox();
 		comboBoxRegisterNewInvoiceSupplier.setBackground(Color.WHITE);
 		comboBoxRegisterNewInvoiceSupplier.setBounds(130, 221, 96, 18);
 
@@ -263,7 +263,7 @@ public class Application {
 		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
 
-		JComboBox comboBoxRegisterInvoiceProduct = new JComboBox();
+		comboBoxRegisterInvoiceProduct = new JComboBox();
 		comboBoxRegisterInvoiceProduct.setBounds(130, 315, 96, 18);
 
 		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
@@ -334,7 +334,7 @@ public class Application {
 		panelSearchInvoice.add(lblFindInvoiceByCategory);
 
 
-		JComboBox comboBoxFindInvoiceByCategory = new JComboBox();
+		comboBoxFindInvoiceByCategory = new JComboBox();
 		comboBoxFindInvoiceByCategory.setBounds(137, 62, 96, 18);
 
 		panelSearchInvoice.add(comboBoxFindInvoiceByCategory);
@@ -570,6 +570,9 @@ public class Application {
 		button.setBounds(10, 61, 164, 23);
 		panel.add(button);
 
+		
+		
+		
 		JLabel label_3 = new JLabel("Ny vara:");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_3.setBounds(10, 120, 48, 14);
@@ -597,7 +600,10 @@ public class Application {
 		buttonAddProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String productName = textFieldProductName.getText();
-
+				String productNumber = textFieldProductNumber.getText();
+				String supplier = (String) comboBoxAddProductSupplier.getSelectedItem();
+				String category = (String) comboBoxAddProductSupplier.getSelectedItem();
+				
 			}
 		});
 		buttonAddProduct.setBounds(10, 258, 164, 23);
