@@ -9,15 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-
-import controller.Controller;
-
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import controller.Controller;
 import controller.DateLabelFormatter;
-
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -41,12 +38,19 @@ public class Application {
 	private JTextField textFieldNewSupplierNumber;
 	private JTextField textFieldNewSupplierSite;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+
+	private JTextField textFieldProductName;
+	private JTextField textFieldProductNumber;
 
 	private Controller controller;
 
 	private JTable tableReport;
+	private JTable tableSearchSuppliers;
+	
+	public void updateComboBoxes(Controller controller) {
+		
+	}
+
 
 	/**
 	 * Launch the application.
@@ -75,10 +79,12 @@ public class Application {
 	public Application() {
 		initialize();
 	}
-
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
 		controller = new Controller();
 		frame = new JFrame();
@@ -106,28 +112,34 @@ public class Application {
 		tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
 		panelNewInvoice.setLayout(null);
 
-		UtilDateModel dateModel = new UtilDateModel();
+
 		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
 		Properties p = new Properties();
 		p.put("text.today", "Idag");
 		p.put("text.month", "Månad");
 		p.put("text.year", "År");
 
-		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
-
-		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReceived = new UtilDateModel();
+		JDatePanelImpl datePanelReceived = new JDatePanelImpl(dateModelReceived, p);
+		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
 		datePickerReceived.setBounds(107, 76, 202, 29);
 		panelNewInvoice.add(datePickerReceived);
 
-		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelPrinted = new UtilDateModel();
+		JDatePanelImpl datePanelPrinted = new JDatePanelImpl(dateModelPrinted, p);
+		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
 		datePickerPrinted.setBounds(107, 36, 202, 29);
 		panelNewInvoice.add(datePickerPrinted);
 
-		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelExpiryDate = new UtilDateModel();
+		JDatePanelImpl datePanelExpiryDate = new JDatePanelImpl(dateModelExpiryDate, p);
+		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
 		datePickerExpiryDate.setBounds(107, 116, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
 
-		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelDelivery = new UtilDateModel();
+		JDatePanelImpl datePanelDelivery = new JDatePanelImpl(dateModelDelivery, p);
+		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
 		datePickerDelivery.setBounds(107, 156, 202, 29);
 		panelNewInvoice.add(datePickerDelivery);
 
@@ -140,13 +152,11 @@ public class Application {
 		panelNewInvoice.add(lblRegisterProduct);
 
 		JLabel lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
-
 		lblRegisterInvoiceCopy.setBounds(10, 223, 87, 14);
 		panelNewInvoice.add(lblRegisterInvoiceCopy);
 
 		JLabel lblRegisterSupplier = new JLabel("Leverant\u00F6r");
 		lblRegisterSupplier.setBounds(10, 198, 87, 14);
-
 		panelNewInvoice.add(lblRegisterSupplier);
 
 		JLabel lblRegisterPrintedDate = new JLabel("Utskriftsdatum");
@@ -179,23 +189,21 @@ public class Application {
 		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
 
 		JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
-
 		lblRegisterReceivedDate.setBounds(10, 78, 87, 14);
 		panelNewInvoice.add(lblRegisterReceivedDate);
 
 		JLabel lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
 		lblRegisterExpirationDate.setBounds(10, 119, 96, 14);
-
 		panelNewInvoice.add(lblRegisterExpirationDate);
 
 		JButton btnRegisterInvoice = new JButton("Registrera");
 		btnRegisterInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 		btnRegisterInvoice.setBounds(10, 382, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
-
 
 		JLabel lblLeveransdatum = new JLabel("Leveransdatum");
 		lblLeveransdatum.setBounds(10, 158, 87, 14);
@@ -234,6 +242,7 @@ public class Application {
 		panelSearchInvoice.add(btnFindInvoice);
 		btnFindInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String invoiceNumber = textFieldFindInvoiceByInvoiceNumber.getText();
 				String category = (String)comboBoxFindInvoiceByCategory.getSelectedItem();
 				if (!invoiceNumber.equals("") && category == null) {
@@ -248,6 +257,7 @@ public class Application {
 				} else {
 					//felmeddelande till anv�ndaren
 				}
+
 			}
 		});
 
@@ -352,6 +362,7 @@ public class Application {
 		JButton btnSearchAllSuppliers = new JButton("Visa alla");
 		btnSearchAllSuppliers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tableSearchSuppliers.setModel(controller.viewAllSuppliers());
 			}
 		});
 		btnSearchAllSuppliers.setBounds(136, 71, 89, 23);
@@ -376,9 +387,9 @@ public class Application {
 		JScrollPane scrollPaneSearchSuppliers = new JScrollPane();
 		scrollPaneSearchSuppliers.setBounds(280, 11, 527, 439);
 		panelSearchSupplier.add(scrollPaneSearchSuppliers);
-
-		JTextArea textAreaSearchSuppliers = new JTextArea();
-		scrollPaneSearchSuppliers.setViewportView(textAreaSearchSuppliers);
+		
+		tableSearchSuppliers = new JTable();
+		scrollPaneSearchSuppliers.setViewportView(tableSearchSuppliers);
 
 		JPanel panelCategory = new JPanel();
 		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);
@@ -403,7 +414,33 @@ public class Application {
 		textField.setBounds(78, 33, 96, 20);
 		panel.add(textField);
 
+
+		JLabel lblAddCategoryResponse = new JLabel("");
+		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
+		panel.add(lblAddCategoryResponse);
+
+		JLabel lblErrorMessage = new JLabel("");
+		lblErrorMessage.setForeground(Color.RED);
+		lblErrorMessage.setBounds(10, 292, 280, 14);
+		panel.add(lblErrorMessage);
+
 		JButton button = new JButton("L\u00E4gg till kategori");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String categoryName = textField.getText();
+				if (categoryName.equals("")) {
+					lblErrorMessage.setText("V�nligen ange ett namn.");
+					lblAddCategoryResponse.setText("");
+				} else if (controller.getCategoryRegister().findCategory(categoryName) != null) {
+					lblErrorMessage.setText("Kategorin " + categoryName + " finns redan.");
+					lblAddCategoryResponse.setText("");
+				} else {
+					controller.addCategory(categoryName);
+					lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
+					lblErrorMessage.setText("");
+				}
+			}
+		});
 		button.setBounds(10, 61, 164, 23);
 		panel.add(button);
 
@@ -420,23 +457,30 @@ public class Application {
 		label_5.setBounds(10, 221, 48, 14);
 		panel.add(label_5);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(78, 219, 96, 18);
-		panel.add(comboBox);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(78, 142, 96, 20);
-		panel.add(textField_1);
+		JComboBox comboBoxAddProductCategory = new JComboBox();
+		comboBoxAddProductCategory.setBounds(78, 219, 96, 18);
+		panel.add(comboBoxAddProductCategory);
 
-		JButton button_1 = new JButton("L\u00E4gg till vara");
-		button_1.setBounds(10, 258, 164, 23);
-		panel.add(button_1);
+		textFieldProductName = new JTextField();
+		textFieldProductName.setColumns(10);
+		textFieldProductName.setBounds(78, 142, 96, 20);
+		panel.add(textFieldProductName);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(78, 167, 96, 20);
-		panel.add(textField_2);
+		JButton buttonAddProduct = new JButton("L\u00E4gg till vara");
+		buttonAddProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String productName = textFieldProductName.getText();
+
+			}
+		});
+		buttonAddProduct.setBounds(10, 258, 164, 23);
+		panel.add(buttonAddProduct);
+
+		textFieldProductNumber = new JTextField();
+		textFieldProductNumber.setColumns(10);
+		textFieldProductNumber.setBounds(78, 167, 96, 20);
+		panel.add(textFieldProductNumber);
 
 		JLabel label_6 = new JLabel("Varunummer");
 		label_6.setBounds(10, 170, 79, 14);
@@ -446,19 +490,27 @@ public class Application {
 		label_7.setBounds(10, 196, 79, 14);
 		panel.add(label_7);
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(78, 195, 96, 18);
-		panel.add(comboBox_1);
+
+		JComboBox comboBoxAddProductSupplier = new JComboBox();
+		comboBoxAddProductSupplier.setBounds(78, 195, 96, 18);
+		panel.add(comboBoxAddProductSupplier);
+
+
+
 
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);
 		panelReport.setLayout(null);
 
-		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReportStartDate = new UtilDateModel();
+		JDatePanelImpl datePanelReportStartDate = new JDatePanelImpl(dateModelReportStartDate, p);
+		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanelReportStartDate, dateLabelFormatter);
 		datePickerReportStartDate.setBounds(92, 11, 202, 29);
 		panelReport.add(datePickerReportStartDate);
 
-		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		UtilDateModel dateModelReportEndDate = new UtilDateModel();
+		JDatePanelImpl datePanelReportEndDate = new JDatePanelImpl(dateModelReportEndDate, p);
+		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanelReportEndDate, dateLabelFormatter);
 		datePickerReportEndDate.setBounds(92, 51, 202, 29);
 		panelReport.add(datePickerReportEndDate);
 
