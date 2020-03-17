@@ -466,9 +466,11 @@ public class Application {
 				}
 				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
 					tableSearchSuppliers.setModel(controller.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
+					lblErrorInSearchForSupplier.setText("");
 				}
 				else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
 					tableSearchSuppliers.setModel(controller.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
+					lblErrorInSearchForSupplier.setText("");
 				}
 			}
 		});
