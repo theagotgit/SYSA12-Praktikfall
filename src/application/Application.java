@@ -41,8 +41,8 @@ public class Application {
 	private JTextField textFieldNewSupplierNumber;
 	private JTextField textFieldNewSupplierSite;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textFieldProductName;
+	private JTextField textFieldProductNumber;
 
 	private Controller controller;
 
@@ -416,23 +416,29 @@ public class Application {
 		label_5.setBounds(10, 221, 48, 14);
 		panel.add(label_5);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(78, 219, 96, 18);
-		panel.add(comboBox);
+		JComboBox comboBoxAddProductCategory = new JComboBox();
+		comboBoxAddProductCategory.setBounds(78, 219, 96, 18);
+		panel.add(comboBoxAddProductCategory);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(78, 142, 96, 20);
-		panel.add(textField_1);
+		textFieldProductName = new JTextField();
+		textFieldProductName.setColumns(10);
+		textFieldProductName.setBounds(78, 142, 96, 20);
+		panel.add(textFieldProductName);
 
-		JButton button_1 = new JButton("L\u00E4gg till vara");
-		button_1.setBounds(10, 258, 164, 23);
-		panel.add(button_1);
+		JButton buttonAddProduct = new JButton("L\u00E4gg till vara");
+		buttonAddProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String productName = textFieldProductName.getText();
+				
+			}
+		});
+		buttonAddProduct.setBounds(10, 258, 164, 23);
+		panel.add(buttonAddProduct);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(78, 167, 96, 20);
-		panel.add(textField_2);
+		textFieldProductNumber = new JTextField();
+		textFieldProductNumber.setColumns(10);
+		textFieldProductNumber.setBounds(78, 167, 96, 20);
+		panel.add(textFieldProductNumber);
 
 		JLabel label_6 = new JLabel("Varunummer");
 		label_6.setBounds(10, 170, 79, 14);
@@ -442,9 +448,9 @@ public class Application {
 		label_7.setBounds(10, 196, 79, 14);
 		panel.add(label_7);
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(78, 195, 96, 18);
-		panel.add(comboBox_1);
+		JComboBox comboBoxAddProductSupplier = new JComboBox();
+		comboBoxAddProductSupplier.setBounds(78, 195, 96, 18);
+		panel.add(comboBoxAddProductSupplier);
 		
 		
 

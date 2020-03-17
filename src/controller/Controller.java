@@ -107,4 +107,15 @@ public class Controller {
 		}
 		return result;
 	}
+	
+	
+	public String[] updateComboBoxes () {
+		//For updating the first combo box
+
+	}
+	
+	
+	
+	
+	
 }
