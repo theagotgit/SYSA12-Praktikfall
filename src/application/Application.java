@@ -320,13 +320,12 @@ public class Application {
 				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
 					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
 				}// felmeddlande om supplier redan finns i databaserna 
-				else { if (controller.getSupplierRegister().findSupplier(name) != null) {
-					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
-					}else {
+				else if (controller.searchSupplier(name) == null) {
 					lblErrorMessageSupplier.setText("");
 					controller.addSupplier(name, fax, number, site);
 					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
-				}
+				}else {
+					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
 				}
 			}
 		});

@@ -30,7 +30,6 @@ public class Controller {
 		this.categoryRegister = categoryRegister;
 	}
 	
-	
 	public void registerNewInvoice(String supplierName, String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
 		Supplier supplier = supplierRegister.findSupplier(supplierName);
 		Invoice newInvoice = new Invoice(supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
