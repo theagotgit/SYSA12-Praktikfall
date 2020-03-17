@@ -308,10 +308,40 @@ public class Application {
 		textFieldNewSupplierSite.setBounds(107, 83, 128, 20);
 		panelRegisterNewSupplier.add(textFieldNewSupplierSite);
 		textFieldNewSupplierSite.setColumns(10);
+		
+		JLabel lblErrorMessageSupplier = new JLabel("");
+		lblErrorMessageSupplier.setForeground(Color.RED);
+		lblErrorMessageSupplier.setBounds(12, 157, 256, 13);
+		panelRegisterNewSupplier.add(lblErrorMessageSupplier);
+		
+		JLabel lblAddSupplierResponse = new JLabel("");
+		lblAddSupplierResponse.setBounds(247, 129, 269, 13);
+		panelRegisterNewSupplier.add(lblAddSupplierResponse);
 
 		JButton btnNewSupplier = new JButton("L\u00E4gg till leverant\u00F6r");
+		btnNewSupplier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = textFieldNewSupplierName.getText();
+				String fax = textFieldNewSupplierFax.getText();
+				String number = textFieldNewSupplierNumber.getText();
+				String site = textFieldNewSupplierSite.getText();
+				
+				///Felmeddelande om man inte fyller i något
+				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
+					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
+				}// felmeddlande om supplier redan finns i databaserna 
+				else if (controller.searchSupplier(name) == null) {
+					lblErrorMessageSupplier.setText("");
+					controller.addSupplier(name, fax, number, site);
+					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
+				}else {
+					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
+				}
+			}
+		});
 		btnNewSupplier.setBounds(10, 124, 227, 23);
 		panelRegisterNewSupplier.add(btnNewSupplier);
+		
 
 		JPanel panelSearchSupplier = new JPanel();
 		tabbedPaneInsideSuppliers.addTab("S\u00F6k Leverant\u00F6r", null, panelSearchSupplier, null);
