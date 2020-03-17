@@ -61,6 +61,7 @@ public class Controller {
 	}
 	public void addSupplier(String name, String faxNumber, String telephoneNumber, String webAddress) {
 		Supplier supplier = new Supplier(name, faxNumber, telephoneNumber, webAddress);
+		supplierRegister.addSupplier(supplier);
 	}
 	public Supplier searchSupplier(String name) {
 		return supplierRegister.findSupplier(name);
