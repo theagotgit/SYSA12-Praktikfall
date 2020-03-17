@@ -16,6 +16,7 @@ public class InvoiceRegister {
 	public void addInvoice(Invoice invoice) {
 		this.invoices.add(invoice);
 	}
+	
 	public Invoice findInvoice(String invoiceNumber) {
 		for(Invoice tmp: invoices) {
 			if(tmp.getInvoiceNumber().equals(invoiceNumber)){
@@ -24,8 +25,13 @@ public class InvoiceRegister {
 		}
 		return null;
 	}
-	public void removeInvoice(String invoiceNumber) {
-		invoices.remove(this.findInvoice(invoiceNumber));
+	public Invoice deleteInvoice(String invoiceNumber) {
+		Invoice invoice = this.findInvoice(invoiceNumber);
+		invoices.remove(invoice);
+		return invoice;
 	}
+//	public Invoice editInvoice(String invoiceNumber, Calendar expiryDate, Calendar printDate, Calendar acknowledgementDate, Calendar deliveryDate) {
+		
+//	}
 }
 
