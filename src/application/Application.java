@@ -17,9 +17,11 @@ import controller.Controller;
 import controller.DateLabelFormatter;
 
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -43,6 +45,15 @@ public class Application {
 
 	private JTextField textFieldProductName;
 	private JTextField textFieldProductNumber;
+	private JComboBox comboBoxRegisterNewInvoiceSupplier;
+	private JComboBox comboBoxAddProductSupplier;
+	private JComboBox comboBoxReportSupplier;
+	private JComboBox comboBoxRegisterInvoiceProduct;
+	private JComboBox comboBoxSearchSupplierByProduct;
+	private JComboBox comboBoxFindInvoiceByCategory;
+	private JComboBox comboBoxSearchSupplierByCategory;
+	private JComboBox comboBoxAddProductCategory;
+	private JComboBox comboBoxReportCategory;
 
 	private Controller controller;
 
@@ -50,7 +61,20 @@ public class Application {
 	private JTable tableSearchSuppliers;
 	
 	public void updateComboBoxes(Controller controller) {
-		
+		ArrayList<DefaultComboBoxModel> comboBoxContent = controller.updateComboBoxes();
+		/*	Supplier comboboxes: comboBoxRegisterNewInvoiceSupplier, comboBoxAddProductSupplier, comboBoxReportSupplier
+		 * 	Product comboboxes: comboBoxRegisterInvoiceProduct, comboBoxSearchSupplierByProduct
+		 * 	Category comboboxes: comboBoxFindInvoiceByCategory, comboBoxSearchSupplierByCategory, comboBoxAddProductCategory, comboBoxReportCategory
+		 * */
+		comboBoxRegisterNewInvoiceSupplier.setModel(comboBoxContent.get(0));
+		comboBoxAddProductSupplier.setModel(comboBoxContent.get(0));
+		comboBoxReportSupplier.setModel(comboBoxContent.get(0));
+		comboBoxRegisterInvoiceProduct.setModel(comboBoxContent.get(1));
+		comboBoxSearchSupplierByProduct.setModel(comboBoxContent.get(1));
+		comboBoxFindInvoiceByCategory.setModel(comboBoxContent.get(2));
+		comboBoxSearchSupplierByCategory.setModel(comboBoxContent.get(2));
+		comboBoxAddProductCategory.setModel(comboBoxContent.get(2));
+		comboBoxReportCategory.setModel(comboBoxContent.get(2));
 	}
 
 
@@ -88,6 +112,7 @@ public class Application {
 	 */
 	
 	private void initialize() {
+		
 		controller = new Controller();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(0, 0, 0));
@@ -220,9 +245,10 @@ public class Application {
 		panelNewInvoice.add(textFieldRegisterInvoiceNumber);
 		textFieldRegisterInvoiceNumber.setColumns(10);
 
-		JComboBox comboBoxRegisterNewInvoiceSupplier = new JComboBox();
+		comboBoxRegisterNewInvoiceSupplier = new JComboBox();
 		comboBoxRegisterNewInvoiceSupplier.setBackground(Color.WHITE);
 		comboBoxRegisterNewInvoiceSupplier.setBounds(130, 221, 96, 18);
+
 		panelNewInvoice.add(comboBoxRegisterNewInvoiceSupplier);
 
 		JButton btnRegisterInvoiceChooseFile = new JButton("V\u00E4lj fil...");
@@ -236,8 +262,10 @@ public class Application {
 		spinnerRegisterNewInvoiceAmount.setBounds(130, 339, 96, 20);
 		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
-		JComboBox comboBoxRegisterInvoiceProduct = new JComboBox();
+
+		comboBoxRegisterInvoiceProduct = new JComboBox();
 		comboBoxRegisterInvoiceProduct.setBounds(130, 315, 96, 18);
+
 		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
 
 		JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
@@ -305,8 +333,10 @@ public class Application {
 		lblFindInvoiceByCategory.setBounds(32, 63, 68, 14);
 		panelSearchInvoice.add(lblFindInvoiceByCategory);
 
-		JComboBox comboBoxFindInvoiceByCategory = new JComboBox();
+
+		comboBoxFindInvoiceByCategory = new JComboBox();
 		comboBoxFindInvoiceByCategory.setBounds(137, 62, 96, 18);
+
 		panelSearchInvoice.add(comboBoxFindInvoiceByCategory);
 
 		textFieldFindInvoiceByInvoiceNumber = new JTextField();
@@ -353,7 +383,7 @@ public class Application {
 					lblErrorMessageInvoice.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
 					lblAddInvoiceResponse.setText("");
 				}
-
+				
 			}
 		});
 
@@ -481,11 +511,11 @@ public class Application {
 		lblSearchSupplierByProduct.setBounds(10, 36, 48, 14);
 		panelSearchSupplier.add(lblSearchSupplierByProduct);
 
-		JComboBox comboBoxSearchSupplierByProduct = new JComboBox();
+		comboBoxSearchSupplierByProduct = new JComboBox();
 		comboBoxSearchSupplierByProduct.setBounds(89, 34, 136, 18);
 		panelSearchSupplier.add(comboBoxSearchSupplierByProduct);
 
-		JComboBox comboBoxSearchSupplierByCategory = new JComboBox();
+		comboBoxSearchSupplierByCategory = new JComboBox();
 		comboBoxSearchSupplierByCategory.setBounds(89, 9, 136, 18);
 		panelSearchSupplier.add(comboBoxSearchSupplierByCategory);
 
@@ -545,11 +575,15 @@ public class Application {
 					lblErrorMessage.setText("");
 					textField.setText("");
 				}
+				updateComboBoxes(controller);
 			}
 		});
 		button.setBounds(10, 61, 164, 23);
 		panel.add(button);
 
+		
+		
+		
 		JLabel label_3 = new JLabel("Ny vara:");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_3.setBounds(10, 120, 48, 14);
@@ -564,7 +598,7 @@ public class Application {
 		panel.add(label_5);
 
 
-		JComboBox comboBoxAddProductCategory = new JComboBox();
+		comboBoxAddProductCategory = new JComboBox();
 		comboBoxAddProductCategory.setBounds(78, 219, 96, 18);
 		panel.add(comboBoxAddProductCategory);
 
@@ -577,7 +611,10 @@ public class Application {
 		buttonAddProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String productName = textFieldProductName.getText();
-
+				String productNumber = textFieldProductNumber.getText();
+				String supplier = (String) comboBoxAddProductSupplier.getSelectedItem();
+				String category = (String) comboBoxAddProductSupplier.getSelectedItem();
+				
 			}
 		});
 		buttonAddProduct.setBounds(10, 258, 164, 23);
@@ -597,7 +634,7 @@ public class Application {
 		panel.add(label_7);
 
 
-		JComboBox comboBoxAddProductSupplier = new JComboBox();
+		comboBoxAddProductSupplier = new JComboBox();
 		comboBoxAddProductSupplier.setBounds(78, 195, 96, 18);
 		panel.add(comboBoxAddProductSupplier);
 
@@ -643,11 +680,11 @@ public class Application {
 		lblReportSupplier.setBounds(10, 123, 72, 14);
 		panelReport.add(lblReportSupplier);
 
-		JComboBox comboBoxReportSupplier = new JComboBox();
+		comboBoxReportSupplier = new JComboBox();
 		comboBoxReportSupplier.setBounds(92, 123, 105, 18);
 		panelReport.add(comboBoxReportSupplier);
 
-		JComboBox comboBoxReportCategory = new JComboBox();
+		comboBoxReportCategory = new JComboBox();
 		comboBoxReportCategory.setBounds(92, 91, 105, 19);
 		panelReport.add(comboBoxReportCategory);
 
