@@ -329,13 +329,20 @@ public class Application {
 				///Felmeddelande om man inte fyller i något
 				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
 					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
-				}// felmeddlande om supplier redan finns i databaserna 
+					lblAddSupplierResponse.setText("");
+				}
 				else if (controller.searchSupplier(name) == null) {
 					lblErrorMessageSupplier.setText("");
 					controller.addSupplier(name, fax, number, site);
 					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
-				}else {
+					textFieldNewSupplierName.setText("");
+					textFieldNewSupplierFax.setText("");
+					textFieldNewSupplierNumber.setText("");
+					textFieldNewSupplierSite.setText("");
+				}// felmeddlande om supplier redan finns i databaserna 
+				else {
 					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
+					lblAddSupplierResponse.setText("");
 				}
 			}
 		});
