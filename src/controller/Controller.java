@@ -50,6 +50,7 @@ public class Controller {
 	}
 	public void addSupplier(String name, String faxNumber, String telephoneNumber, String webAddress) {
 		Supplier supplier = new Supplier(name, faxNumber, telephoneNumber, webAddress);
+		supplierRegister.addSupplier(supplier);
 	}
 	public Supplier searchSupplier(String name) {
 		return supplierRegister.findSupplier(name);
@@ -87,12 +88,12 @@ public class Controller {
 		return sum;
 	}
 	public String searchCategory(String name) {
-		String result = "Fakturor med varor från kategorin \"" + name + "\":\n";
+		String result = "Fakturor med varor frï¿½n kategorin \"" + name + "\":\n";
 		ArrayList<Invoice> invoicesAlreadyRecorded = new ArrayList<Invoice>();
 		for (Invoice invoice : invoiceRegister.getInvoice()) {
 			for (OrderLine tmp : invoice.getOrderLine()) {
 				if (tmp.getProduct().getCategory().getName().equals(name) && !invoicesAlreadyRecorded.contains(invoice)) {
-					result += "\nFakturanummer: " + invoice.getInvoiceNumber() + "\nLadda ner fil...\nFörfallodatum: " + invoice.getExpiryDate() +"\nSumma: " + this.findSum(invoice.getInvoiceNumber() + " SEK");
+					result += "\nFakturanummer: " + invoice.getInvoiceNumber() + "\nLadda ner fil...\nFï¿½rfallodatum: " + invoice.getExpiryDate() +"\nSumma: " + this.findSum(invoice.getInvoiceNumber() + " SEK");
 					invoicesAlreadyRecorded.add(invoice);
 				}
 			}
