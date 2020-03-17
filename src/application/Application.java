@@ -8,15 +8,24 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import controller.DateLabelFormatter;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JTable;
 
 public class Application {
 
@@ -30,6 +39,7 @@ public class Application {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTable tableReport;
 
 
 	/**
@@ -88,26 +98,51 @@ public class Application {
 		JPanel panelNewInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
 		panelNewInvoice.setLayout(null);
+		
+		UtilDateModel dateModel = new UtilDateModel();
+		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
+		Properties p = new Properties();
+		p.put("text.today", "Idag");
+		p.put("text.month", "Månad");
+		p.put("text.year", "År");
+
+		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
+		
+		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerReceived.setBounds(107, 76, 202, 29);
+		panelNewInvoice.add(datePickerReceived);
+		
+		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerPrinted.setBounds(107, 36, 202, 29);
+		panelNewInvoice.add(datePickerPrinted);
+		
+		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerExpiryDate.setBounds(107, 116, 202, 29);
+		panelNewInvoice.add(datePickerExpiryDate);
+		
+		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerDelivery.setBounds(107, 156, 202, 29);
+		panelNewInvoice.add(datePickerDelivery);
 
 		JLabel lblRegisterAmount = new JLabel("Antal");
-		lblRegisterAmount.setBounds(10, 240, 25, 14);
+		lblRegisterAmount.setBounds(10, 342, 25, 14);
 		panelNewInvoice.add(lblRegisterAmount);
 
 		JLabel lblRegisterProduct = new JLabel("Vara");
-		lblRegisterProduct.setBounds(10, 215, 87, 14);
+		lblRegisterProduct.setBounds(10, 317, 87, 14);
 		panelNewInvoice.add(lblRegisterProduct);
 
 		JLabel lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
-		lblRegisterInvoiceCopy.setBounds(10, 138, 87, 14);
+		lblRegisterInvoiceCopy.setBounds(10, 223, 87, 14);
 		panelNewInvoice.add(lblRegisterInvoiceCopy);
 
 		JLabel lblRegisterSupplier = new JLabel("Leverant\u00F6r");
-		lblRegisterSupplier.setBounds(10, 113, 87, 14);
+		lblRegisterSupplier.setBounds(10, 198, 87, 14);
 		panelNewInvoice.add(lblRegisterSupplier);
 
-		JLabel lblRegisterSentDate = new JLabel("Skickat datum");
-		lblRegisterSentDate.setBounds(10, 36, 87, 14);
-		panelNewInvoice.add(lblRegisterSentDate);
+		JLabel lblRegisterPrintedDate = new JLabel("Utskriftsdatum");
+		lblRegisterPrintedDate.setBounds(10, 36, 87, 14);
+		panelNewInvoice.add(lblRegisterPrintedDate);
 
 		JLabel lblRegisterInvoiceNumber = new JLabel("Fakturanummer");
 		lblRegisterInvoiceNumber.setBounds(10, 11, 87, 14);
@@ -119,27 +154,27 @@ public class Application {
 		textFieldRegisterInvoiceNumber.setColumns(10);
 
 		JComboBox comboBoxRegisterNewInvoiceSupplier = new JComboBox();
-		comboBoxRegisterNewInvoiceSupplier.setBounds(107, 111, 96, 18);
+		comboBoxRegisterNewInvoiceSupplier.setBounds(107, 196, 96, 18);
 		panelNewInvoice.add(comboBoxRegisterNewInvoiceSupplier);
 
 		JButton btnRegisterInvoiceChooseFile = new JButton("V\u00E4lj fil...");
-		btnRegisterInvoiceChooseFile.setBounds(107, 136, 96, 19);
+		btnRegisterInvoiceChooseFile.setBounds(107, 221, 96, 19);
 		panelNewInvoice.add(btnRegisterInvoiceChooseFile);
 
 		JSpinner spinnerRegisterNewInvoiceAmount = new JSpinner();
-		spinnerRegisterNewInvoiceAmount.setBounds(107, 237, 96, 20);
+		spinnerRegisterNewInvoiceAmount.setBounds(107, 339, 96, 20);
 		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
 		JComboBox comboBoxRegisterInvoiceProduct = new JComboBox();
-		comboBoxRegisterInvoiceProduct.setBounds(107, 213, 96, 18);
+		comboBoxRegisterInvoiceProduct.setBounds(107, 315, 96, 18);
 		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
 
 		JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
-		lblRegisterReceivedDate.setBounds(10, 63, 87, 14);
+		lblRegisterReceivedDate.setBounds(10, 78, 87, 14);
 		panelNewInvoice.add(lblRegisterReceivedDate);
 
 		JLabel lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
-		lblRegisterExpirationDate.setBounds(10, 88, 96, 14);
+		lblRegisterExpirationDate.setBounds(10, 119, 96, 14);
 		panelNewInvoice.add(lblRegisterExpirationDate);
 
 		JButton btnRegisterInvoice = new JButton("Registrera");
@@ -147,8 +182,12 @@ public class Application {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRegisterInvoice.setBounds(10, 280, 193, 23);
+		btnRegisterInvoice.setBounds(10, 382, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
+		
+		JLabel lblLeveransdatum = new JLabel("Leveransdatum");
+		lblLeveransdatum.setBounds(10, 158, 87, 14);
+		panelNewInvoice.add(lblLeveransdatum);
 
 		JPanel panelSearchInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("S\u00F6k Faktura", null, panelSearchInvoice, null);
@@ -161,10 +200,6 @@ public class Application {
 		JTextArea textAreaSearchInvoice = new JTextArea();
 		scrollPaneFindInvoice.setViewportView(textAreaSearchInvoice);
 
-		JLabel lblFindInvoiceByProduct = new JLabel("Vara");
-		lblFindInvoiceByProduct.setBounds(10, 59, 48, 14);
-		panelSearchInvoice.add(lblFindInvoiceByProduct);
-
 		JLabel lblFIndInvoiceNumber = new JLabel("Fakturanummer");
 		lblFIndInvoiceNumber.setBounds(10, 9, 89, 14);
 		panelSearchInvoice.add(lblFIndInvoiceNumber);
@@ -172,10 +207,6 @@ public class Application {
 		JLabel lblFindInvoiceByCategory = new JLabel("Kategori");
 		lblFindInvoiceByCategory.setBounds(10, 34, 48, 14);
 		panelSearchInvoice.add(lblFindInvoiceByCategory);
-
-		JComboBox comboBoxFindInvoiceByProduct = new JComboBox();
-		comboBoxFindInvoiceByProduct.setBounds(108, 56, 96, 20);
-		panelSearchInvoice.add(comboBoxFindInvoiceByProduct);
 
 		JComboBox comboBoxFindInvoiceByCategory = new JComboBox();
 		comboBoxFindInvoiceByCategory.setBounds(108, 32, 96, 18);
@@ -187,7 +218,7 @@ public class Application {
 		textFieldFindInvoiceByInvoiceNumber.setColumns(10);
 
 		JButton btnFindInvoice = new JButton("Hitta Faktura");
-		btnFindInvoice.setBounds(10, 92, 194, 23);
+		btnFindInvoice.setBounds(10, 59, 194, 23);
 		panelSearchInvoice.add(btnFindInvoice);
 		btnFindInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -366,42 +397,53 @@ public class Application {
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);
 		panelReport.setLayout(null);
+		
+		JDatePickerImpl datePickerReportStartDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerReportStartDate.setBounds(92, 11, 202, 29);
+		panelReport.add(datePickerReportStartDate);
+		
+		JDatePickerImpl datePickerReportEndDate = new JDatePickerImpl(datePanel, dateLabelFormatter);
+		datePickerReportEndDate.setBounds(92, 51, 202, 29);
+		panelReport.add(datePickerReportEndDate);
 
 		JScrollPane scrollPaneReport = new JScrollPane();
 		scrollPaneReport.setBounds(388, 11, 444, 489);
 		panelReport.add(scrollPaneReport);
+		
+		tableReport = new JTable();
+		scrollPaneReport.setViewportView(tableReport);
 
 		JLabel lblReportChooseDate = new JLabel("V\u00E4lj datum");
 		lblReportChooseDate.setBounds(10, 17, 72, 14);
 		panelReport.add(lblReportChooseDate);
 
 		JLabel lblReportDateTo = new JLabel("till");
-		lblReportDateTo.setBounds(165, 17, 16, 14);
+		lblReportDateTo.setBounds(10, 62, 41, 14);
 		panelReport.add(lblReportDateTo);
 
 		JLabel lblReportCategory = new JLabel("Kategori");
-		lblReportCategory.setBounds(10, 45, 48, 14);
+		lblReportCategory.setBounds(10, 94, 48, 14);
 		panelReport.add(lblReportCategory);
 
 		JLabel lblReportSupplier = new JLabel("Leverant\u00F6r");
-		lblReportSupplier.setBounds(10, 74, 72, 14);
+		lblReportSupplier.setBounds(10, 123, 72, 14);
 		panelReport.add(lblReportSupplier);
 
 		JComboBox comboBoxReportSupplier = new JComboBox();
-		comboBoxReportSupplier.setBounds(92, 74, 105, 18);
+		comboBoxReportSupplier.setBounds(92, 123, 105, 18);
 		panelReport.add(comboBoxReportSupplier);
 
 		JComboBox comboBoxReportCategory = new JComboBox();
-		comboBoxReportCategory.setBounds(92, 42, 105, 19);
+		comboBoxReportCategory.setBounds(92, 91, 105, 19);
 		panelReport.add(comboBoxReportCategory);
 
 		JButton btnMakeReport = new JButton("Framst\u00E4ll rapport");
-		btnMakeReport.setBounds(10, 124, 187, 23);
+		btnMakeReport.setBounds(10, 173, 187, 23);
 		panelReport.add(btnMakeReport);
 
 		JLabel lblReportRequiredField = new JLabel("*Obligatoriskt f\u00E4lt");
 		lblReportRequiredField.setForeground(Color.RED);
-		lblReportRequiredField.setBounds(10, 158, 118, 14);
+		lblReportRequiredField.setBounds(10, 207, 118, 14);
 		panelReport.add(lblReportRequiredField);
 
 		JLabel label = new JLabel("*");
