@@ -151,6 +151,7 @@ public class Application {
 		p.put("text.year", "År");
 
 
+
 		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
 
 		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanel, dateLabelFormatter);
@@ -172,28 +173,33 @@ public class Application {
 		datePickerDelivery.getJFormattedTextField().setBackground(Color.WHITE);
 		datePickerDelivery.setBounds(130, 181, 202, 29);
 
+
 		UtilDateModel dateModelReceived = new UtilDateModel();
 		JDatePanelImpl datePanelReceived = new JDatePanelImpl(dateModelReceived, p);
 		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
-		datePickerReceived.setBounds(107, 76, 202, 29);
+		datePickerReceived.setBounds(130, 101, 202, 29);
 		panelNewInvoice.add(datePickerReceived);
 
 		UtilDateModel dateModelPrinted = new UtilDateModel();
 		JDatePanelImpl datePanelPrinted = new JDatePanelImpl(dateModelPrinted, p);
 		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
-		datePickerPrinted.setBounds(107, 36, 202, 29);
+		datePickerPrinted.setBounds(130, 56, 202, 29);
 		panelNewInvoice.add(datePickerPrinted);
 
 		UtilDateModel dateModelExpiryDate = new UtilDateModel();
 		JDatePanelImpl datePanelExpiryDate = new JDatePanelImpl(dateModelExpiryDate, p);
 		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
-		datePickerExpiryDate.setBounds(107, 116, 202, 29);
+		datePickerExpiryDate.setBounds(130, 141, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
 
 		UtilDateModel dateModelDelivery = new UtilDateModel();
 		JDatePanelImpl datePanelDelivery = new JDatePanelImpl(dateModelDelivery, p);
 		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
+
 		datePickerDelivery.setBounds(107, 156, 202, 29);
+
+		datePickerDelivery.setBounds(130, 181, 202, 29);
+
 
 		panelNewInvoice.add(datePickerDelivery);
 
@@ -210,6 +216,9 @@ public class Application {
 		panelNewInvoice.add(lblRegisterProduct);
 
 		JLabel lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
+
+
+
 		lblRegisterInvoiceCopy.setForeground(Color.WHITE);
 		lblRegisterInvoiceCopy.setFont(new Font("Arial Black", Font.PLAIN, 12));
 
@@ -222,11 +231,13 @@ public class Application {
 		lblRegisterSupplier.setBounds(10, 227, 87, 14);
 
 
+
 		lblRegisterInvoiceCopy.setBounds(10, 223, 87, 14);
 		panelNewInvoice.add(lblRegisterInvoiceCopy);
 
 		JLabel lblRegisterSupplier = new JLabel("Leverant\u00F6r");
 		lblRegisterSupplier.setBounds(10, 198, 87, 14);
+
 
 		panelNewInvoice.add(lblRegisterSupplier);
 
@@ -280,11 +291,13 @@ public class Application {
 		lblRegisterExpirationDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblRegisterExpirationDate.setBounds(10, 141, 96, 29);
 
+
 		lblRegisterReceivedDate.setBounds(10, 78, 87, 14);
 		panelNewInvoice.add(lblRegisterReceivedDate);
 
 		JLabel lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
 		lblRegisterExpirationDate.setBounds(10, 119, 96, 14);
+
 
 		panelNewInvoice.add(lblRegisterExpirationDate);
 
@@ -448,13 +461,20 @@ public class Application {
 				///Felmeddelande om man inte fyller i något
 				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
 					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
-				}// felmeddlande om supplier redan finns i databaserna 
+					lblAddSupplierResponse.setText("");
+				}
 				else if (controller.searchSupplier(name) == null) {
 					lblErrorMessageSupplier.setText("");
 					controller.addSupplier(name, fax, number, site);
 					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
-				}else {
+					textFieldNewSupplierName.setText("");
+					textFieldNewSupplierFax.setText("");
+					textFieldNewSupplierNumber.setText("");
+					textFieldNewSupplierSite.setText("");
+				}// felmeddlande om supplier redan finns i databaserna 
+				else {
 					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
+					lblAddSupplierResponse.setText("");
 				}
 			}
 		});

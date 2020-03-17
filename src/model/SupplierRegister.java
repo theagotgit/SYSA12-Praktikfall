@@ -17,6 +17,12 @@ public class SupplierRegister {
 	public SupplierRegister (ArrayList<Supplier> suppliers) {
 		this.setSupplierlist(suppliers);
 
+
+	}
+	public SupplierRegister (ArrayList<Supplier> suppliers) {
+		this.setSupplierlist(suppliers);
+
+
 	}
 	public SupplierRegister() {};
 	public ArrayList<Supplier> getSupplierlist() {
