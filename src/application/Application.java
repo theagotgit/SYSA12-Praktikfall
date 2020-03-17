@@ -532,6 +532,7 @@ public class Application {
 					controller.addCategory(categoryName);
 					lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
 					lblErrorMessage.setText("");
+					textField.setText("");
 				}
 			}
 		});
