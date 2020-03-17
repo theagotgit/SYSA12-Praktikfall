@@ -191,9 +191,9 @@ public class Application {
 		btnRegisterInvoice.setBounds(10, 382, 193, 23);
 		panelNewInvoice.add(btnRegisterInvoice);
 		
-		JLabel lblRegisterDeliveredDate = new JLabel("Leveransdatum");
-		lblRegisterDeliveredDate.setBounds(10, 158, 87, 14);
-		panelNewInvoice.add(lblRegisterDeliveredDate);
+		JLabel lblLeveransdatum = new JLabel("Leveransdatum");
+		lblLeveransdatum.setBounds(10, 158, 87, 14);
+		panelNewInvoice.add(lblLeveransdatum);
 
 		JPanel panelSearchInvoice = new JPanel();
 		tabbedPaneInsideInvoice.addTab("S\u00F6k Faktura", null, panelSearchInvoice, null);

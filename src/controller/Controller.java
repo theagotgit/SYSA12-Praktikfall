@@ -1,5 +1,8 @@
 package controller;
+import java.util.ArrayList;
 import java.util.Calendar;
+
+import javax.swing.table.DefaultTableModel;
 
 import model.*;
 
@@ -30,7 +33,7 @@ public class Controller {
 	
 	public void registerNewInvoice(String supplierName, String invoiceNumber, Calendar expiryDate, Calendar printedDate, Calendar acknowledgementDate, Calendar deliveryDate) {
 		Supplier supplier = supplierRegister.findSupplier(supplierName);
-		Invoice newInvoice = new Invoice (supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
+		Invoice newInvoice = new Invoice(supplier, invoiceNumber, expiryDate, printedDate, acknowledgementDate, deliveryDate);
 		invoiceRegister.addInvoice(newInvoice);
 	}
 	public void registerNewOrderLine(Product product, String invoiceNumber, int lineNumber, int amount) {
@@ -56,5 +59,44 @@ public class Controller {
 	}
 	public void addCategory(String name) {
 		categoryRegister.addCategory(new Category(name));
+	}
+	public void addProduct(String categoryName, String supplierName, String productNumber, double unitPrice, String name) {
+		Category category = categoryRegister.findCategory(categoryName);
+		Product product = new Product(category, supplierRegister.findSupplier(supplierName), productNumber, unitPrice, name);
+		category.addProduct(product);
+	}
+	public void removeCategory(String name) {
+		categoryRegister.deleteCategory(name);
+	}
+	public void removeProduct(String supplierName, String productNumber) {
+		categoryRegister.removeProduct(supplierRegister.findSupplier(supplierName), productNumber);
+	}
+	//createReport() NOT DONE!!!
+	public DefaultTableModel createReport() {
+		DefaultTableModel model = new DefaultTableModel();
+		return model;
+	}
+	
+	public double findSum(String invoiceNumber) {
+		double sum = 0;
+		Invoice invoice = invoiceRegister.findInvoice(invoiceNumber);
+		for (OrderLine orderLine : invoice.getOrderLine()) {
+			double productPrice = orderLine.getProduct().getUnitPrice();
+			sum += (productPrice * orderLine.getAmount());
+		}
+		return sum;
+	}
+	public String searchCategory(String name) {
+		String result = "Fakturor med varor från kategorin \"" + name + "\":\n";
+		ArrayList<Invoice> invoicesAlreadyRecorded = new ArrayList<Invoice>();
+		for (Invoice invoice : invoiceRegister.getInvoice()) {
+			for (OrderLine tmp : invoice.getOrderLine()) {
+				if (tmp.getProduct().getCategory().getName().equals(name) && !invoicesAlreadyRecorded.contains(invoice)) {
+					result += "\nFakturanummer: " + invoice.getInvoiceNumber() + "\nLadda ner fil...\nFörfallodatum: " + invoice.getExpiryDate() +"\nSumma: " + this.findSum(invoice.getInvoiceNumber() + " SEK");
+					invoicesAlreadyRecorded.add(invoice);
+				}
+			}
+		}
+		return result;
 	}
 }

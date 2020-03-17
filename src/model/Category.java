@@ -30,5 +30,16 @@ public class Category {
 	public void addProduct(Product product) {
 		products.add(product);
 	}
-
+	
+	public Product findProduct(Supplier supplier, String productNumber) {
+		for (Product product : products) {
+			if (product.getSupplier().getName().equals(supplier) && product.getProductNumber().equals(productNumber)) {
+				return product;
+			}
+		}
+		return null;
+	}
+	public void removeProduct(Supplier supplier, String productNumber) {
+		products.remove(this.findProduct(supplier, productNumber));
+	}
 }
