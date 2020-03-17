@@ -45,6 +45,7 @@ public class Application {
 	private Controller controller;
 
 	private JTable tableReport;
+	private JTable tableSearchSuppliers;
 	
 	public void updateComboBoxes(Controller controller) {
 		
@@ -331,6 +332,7 @@ public class Application {
 		JButton btnSearchAllSuppliers = new JButton("Visa alla");
 		btnSearchAllSuppliers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tableSearchSuppliers.setModel(controller.viewAllSuppliers());
 			}
 		});
 		btnSearchAllSuppliers.setBounds(136, 71, 89, 23);
@@ -355,9 +357,9 @@ public class Application {
 		JScrollPane scrollPaneSearchSuppliers = new JScrollPane();
 		scrollPaneSearchSuppliers.setBounds(280, 11, 527, 439);
 		panelSearchSupplier.add(scrollPaneSearchSuppliers);
-
-		JTextArea textAreaSearchSuppliers = new JTextArea();
-		scrollPaneSearchSuppliers.setViewportView(textAreaSearchSuppliers);
+		
+		tableSearchSuppliers = new JTable();
+		scrollPaneSearchSuppliers.setViewportView(tableSearchSuppliers);
 
 		JPanel panelCategory = new JPanel();
 		tabbedPane.addTab("Kategorier och Varor", null, panelCategory, null);
