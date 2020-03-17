@@ -20,7 +20,7 @@ public class SupplierRegister {
 		suppliers.add(supplier);
 	}
 	public Supplier findSupplier(String supplierName) {
-		for (Supplier s : suppliers) {
+		for (Supplier s: suppliers) {
 			if (s.getName().equals(supplierName)) {
 				return s;
 			}

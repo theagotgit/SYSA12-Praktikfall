@@ -2,6 +2,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 import model.*;
@@ -109,35 +111,61 @@ public class Controller {
 	}
 	
 	//Returns an array with arrays which can be synched with comboboxes in Application.java.
-	public String[][] updateComboBoxes () {
+	public ArrayList<DefaultComboBoxModel> updateComboBoxes () {
+		
+		ArrayList<DefaultComboBoxModel> comboboxModels = new ArrayList<DefaultComboBoxModel>();
+		
 		//For updating comboboxes with suppliers 
-		String[] suppliers = new String[supplierRegister.getSupplierlist().size()];
-		for (int i = 0; i < supplierRegister.getSupplierlist().size(); i++) {
-			suppliers[i] = supplierRegister.getSupplierlist().get(i).getName();
+		if (supplierRegister.getSupplierlist().isEmpty()) {
+			DefaultComboBoxModel supplierModel = new DefaultComboBoxModel();
+			comboboxModels.add(supplierModel);
+		} else {
+			String[] suppliers = new String[supplierRegister.getSupplierlist().size()];
+			for (int i = 0; i < supplierRegister.getSupplierlist().size(); i++) {
+				suppliers[i] = supplierRegister.getSupplierlist().get(i).getName();
+			}
+			DefaultComboBoxModel supplierModel = new DefaultComboBoxModel(suppliers);
+			comboboxModels.add(supplierModel);
 		}
+		
+		
 		
 		//For updating comboboxes with products
 		ArrayList<Product> productList = new ArrayList<Product>();
-		for (Supplier supplier : supplierRegister.getSupplierlist()) {
-			for (Product product : supplier.getProducts()) {
-				if (productList.indexOf(product) == -1) {
-					productList.add(product);
+		if (supplierRegister.getSupplierlist().isEmpty()) {
+			DefaultComboBoxModel productsModel = new DefaultComboBoxModel();
+			comboboxModels.add(productsModel);
+		} else {
+			for (Supplier supplier : supplierRegister.getSupplierlist()) {
+				for (Product product : supplier.getProducts()) {
+					if (productList.indexOf(product) == -1) {
+						productList.add(product);
+					}
 				}
 			}
-		}
-		String[] products = new String[productList.size()];
-		for (int i = 0; i < productList.size(); i++) {
-			products[i] = productList.get(i).getName() + ", " + productList.get(i).getProductNumber();
+			String[] products = new String[productList.size()];
+			for (int i = 0; i < productList.size(); i++) {
+				products[i] = productList.get(i).getName() + ", " + productList.get(i).getProductNumber();
+			}
+			DefaultComboBoxModel productsModel = new DefaultComboBoxModel(products);
+			comboboxModels.add(productsModel);
 		}
 		
 		//For updating comboboxes with categories
 		String[] categories = new String[categoryRegister.getCategories().size()];
-		for (int i = 0; i < categoryRegister.getCategories().size(); i++) {
-			suppliers[i] = categoryRegister.getCategories().get(i).getName();
+		if (categoryRegister.getCategories().isEmpty()) {
+			DefaultComboBoxModel categoriesModel = new DefaultComboBoxModel();
+			comboboxModels.add(categoriesModel);
+		} else {
+			for (int i = 0; i < categoryRegister.getCategories().size(); i++) {
+				categories[i] = categoryRegister.getCategories().get(i).getName();
+			}
+			DefaultComboBoxModel categoriesModel = new DefaultComboBoxModel(categories);
+			comboboxModels.add(categoriesModel);
 		}
-		String[][] result = {suppliers, products, categories};
 		
-		return result;
+		return comboboxModels;
+		
 	}
 	
 	
