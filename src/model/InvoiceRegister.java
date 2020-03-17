@@ -25,7 +25,7 @@ public class InvoiceRegister {
 		}
 		return null;
 	}
-	public Invoice deleteInvoice(String invoiceNumber) {
+	public Invoice removeInvoice(String invoiceNumber) {
 		Invoice invoice = this.findInvoice(invoiceNumber);
 		invoices.remove(invoice);
 		return invoice;
