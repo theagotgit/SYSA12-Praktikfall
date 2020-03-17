@@ -9,6 +9,7 @@ public class CategoryRegister {
 	public CategoryRegister(ArrayList<Category> categories) {
 		this.categories = categories;
 	}
+	public CategoryRegister() {};
 
 	public ArrayList<Category> getCategories() {
 		return categories;
