@@ -377,13 +377,27 @@ public class Application {
 		JLabel lblAddCategoryResponse = new JLabel("");
 		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
 		panel.add(lblAddCategoryResponse);
+		
+		JLabel lblErrorMessage = new JLabel("");
+		lblErrorMessage.setForeground(Color.RED);
+		lblErrorMessage.setBounds(10, 292, 280, 14);
+		panel.add(lblErrorMessage);
 
 		JButton button = new JButton("L\u00E4gg till kategori");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String categoryName = textField.getText();
-				controller.addCategory(categoryName);
-				lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
+				if (categoryName.equals("")) {
+					lblErrorMessage.setText("Vänligen ange ett namn.");
+					lblAddCategoryResponse.setText("");
+				} else if (controller.getCategoryRegister().findCategory(categoryName) != null) {
+					lblErrorMessage.setText("Kategorin " + categoryName + " finns redan.");
+					lblAddCategoryResponse.setText("");
+				} else {
+					controller.addCategory(categoryName);
+					lblAddCategoryResponse.setText("Kategori " + categoryName + " har nu lagts till.");
+					lblErrorMessage.setText("");
+				}
 			}
 		});
 		button.setBounds(10, 61, 164, 23);
@@ -431,6 +445,8 @@ public class Application {
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(78, 195, 96, 18);
 		panel.add(comboBox_1);
+		
+		
 
 		JPanel panelReport = new JPanel();
 		tabbedPane.addTab("Rapport", null, panelReport, null);

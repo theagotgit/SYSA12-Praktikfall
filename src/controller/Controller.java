@@ -11,6 +11,12 @@ public class Controller {
 	private SupplierRegister supplierRegister;
 	private CategoryRegister categoryRegister;
 	
+	public Controller() {
+		invoiceRegister = new InvoiceRegister();
+		supplierRegister = new SupplierRegister();
+		categoryRegister = new CategoryRegister();
+	}
+	
 	public InvoiceRegister getInvoiceRegister() {
 		return this.invoiceRegister;
 	}
@@ -58,8 +64,10 @@ public class Controller {
 		supplierRegister.deleteSupplier(name);
 	}
 	public void addCategory(String name) {
-		categoryRegister.addCategory(new Category(name));
+		Category category = new Category(name);
+		categoryRegister.addCategory(category);
 	}
+	
 	public void addProduct(String categoryName, String supplierName, String productNumber, double unitPrice, String name) {
 		Category category = categoryRegister.findCategory(categoryName);
 		Product product = new Product(category, supplierRegister.findSupplier(supplierName), productNumber, unitPrice, name);
