@@ -13,19 +13,15 @@ public class SupplierRegister {
 	public SupplierRegister(ArrayList<Supplier> suppliers) {
 		this.suppliers = suppliers;
 	}
-
 	public ArrayList<Supplier> getSupplierlist() {
 		return suppliers;
 	}
-
 	public void setSupplierlist(ArrayList<Supplier> supplierlist) {
 		this.suppliers = supplierlist;
 	}
-
 	public void addSupplier(Supplier supplier) {
 		suppliers.add(supplier);
 	}
-
 	public Supplier findSupplier(String supplierName) {
 		for (Supplier s : suppliers) {
 			if (s.getName().equals(supplierName)) {
@@ -34,6 +30,8 @@ public class SupplierRegister {
 		}
 		return null;
 	}
+
+
 
 	public Supplier deleteSupplier(String SupplierName) {
 		Supplier s = this.findSupplier(SupplierName);
