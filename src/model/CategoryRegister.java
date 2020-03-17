@@ -11,6 +11,9 @@ public class CategoryRegister {
 		this.categories = categories;
 	}
 
+	public CategoryRegister() {
+	}
+
 	public ArrayList<Category> getCategories() {
 		return categories;
 	}

@@ -28,6 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -62,10 +64,13 @@ public class Application {
 
 	public void updateComboBoxes(Controller controller) {
 		ArrayList<DefaultComboBoxModel> comboBoxContent = controller.updateComboBoxes();
-		/*	Supplier comboboxes: comboBoxRegisterNewInvoiceSupplier, comboBoxAddProductSupplier, comboBoxReportSupplier
-		 * 	Product comboboxes: comboBoxRegisterInvoiceProduct, comboBoxSearchSupplierByProduct
-		 * 	Category comboboxes: comboBoxFindInvoiceByCategory, comboBoxSearchSupplierByCategory, comboBoxAddProductCategory, comboBoxReportCategory
-		 * */
+		/*
+		 * Supplier comboboxes: comboBoxRegisterNewInvoiceSupplier,
+		 * comboBoxAddProductSupplier, comboBoxReportSupplier Product comboboxes:
+		 * comboBoxRegisterInvoiceProduct, comboBoxSearchSupplierByProduct Category
+		 * comboboxes: comboBoxFindInvoiceByCategory, comboBoxSearchSupplierByCategory,
+		 * comboBoxAddProductCategory, comboBoxReportCategory
+		 */
 		comboBoxRegisterNewInvoiceSupplier.setModel(comboBoxContent.get(0));
 		comboBoxAddProductSupplier.setModel(comboBoxContent.get(0));
 		comboBoxReportSupplier.setModel(comboBoxContent.get(0));
@@ -76,7 +81,6 @@ public class Application {
 		comboBoxAddProductCategory.setModel(comboBoxContent.get(2));
 		comboBoxReportCategory.setModel(comboBoxContent.get(2));
 	}
-
 
 	/**
 	 * Launch the application.
@@ -105,7 +109,6 @@ public class Application {
 	public Application() {
 		initialize();
 	}
-
 
 	/**
 	 * Initialize the contents of the frame.
@@ -137,7 +140,8 @@ public class Application {
 		panelStart.setLayout(null);
 
 		JLabel label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon("C:\\Users\\Vicky\\eclipse-workspace\\Swing\\SYSA12-Praktikfall\\Copy of CompanyLogo.png"));
+		label_8.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\eclipse-workspace\\Swing\\SYSA12-Praktikfall\\Copy of CompanyLogo.png"));
 		label_8.setBounds(311, 161, 241, 165);
 		panelStart.add(label_8);
 
@@ -156,7 +160,6 @@ public class Application {
 		tabbedPaneInsideInvoice.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		tabbedPaneInsideInvoice.setBounds(10, 11, 822, 489);
 		panelInvoice.add(tabbedPaneInsideInvoice);
-
 
 		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
 		Properties p = new Properties();
@@ -178,6 +181,7 @@ public class Application {
 		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
 		datePickerDelivery.setBounds(130, 181, 202, 29);
 
+		JPanel panelNewInvoice = new JPanel();
 		panelNewInvoice.add(datePickerDelivery);
 
 		JLabel lblRegisterAmount = new JLabel("Antal");
@@ -204,7 +208,6 @@ public class Application {
 		lblRegisterSupplier.setForeground(Color.WHITE);
 		lblRegisterSupplier.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblRegisterSupplier.setBounds(10, 227, 87, 14);
-
 
 		panelNewInvoice.add(lblRegisterSupplier);
 
@@ -242,7 +245,6 @@ public class Application {
 		spinnerRegisterNewInvoiceAmount.setBounds(130, 339, 96, 20);
 		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
-
 		comboBoxRegisterInvoiceProduct = new JComboBox();
 		comboBoxRegisterInvoiceProduct.setBounds(130, 315, 96, 18);
 
@@ -260,7 +262,6 @@ public class Application {
 		lblRegisterExpirationDate.setForeground(Color.WHITE);
 		lblRegisterExpirationDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblRegisterExpirationDate.setBounds(10, 141, 96, 29);
-
 
 		panelNewInvoice.add(lblRegisterExpirationDate);
 
@@ -282,138 +283,134 @@ public class Application {
 		lblLeveransdatum.setBounds(10, 181, 110, 29);
 		panelNewInvoice.add(lblLeveransdatum);
 
-				JPanel panelNewInvoice = new JPanel();
-				panelNewInvoice.setForeground(new Color(255, 165, 0));
-				panelNewInvoice.setBackground(new Color(0, 0, 0));
-				panelNewInvoice.setBorder(new LineBorder(Color.ORANGE, 2));
-				panelNewInvoice.setFont(new Font("Verdana Pro Cond Black", Font.PLAIN, 11));
-				tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
-				tabbedPaneInsideInvoice.setForegroundAt(0, Color.BLACK);
-				tabbedPaneInsideInvoice.setEnabledAt(0, true);
-				tabbedPaneInsideInvoice.setBackgroundAt(0, Color.ORANGE);
-				panelNewInvoice.setLayout(null);
-				JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
-				datePickerReceived.setBounds(130, 101, 202, 29);
-				panelNewInvoice.add(datePickerReceived);
-				JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
-				datePickerPrinted.setBounds(130, 56, 202, 29);
-				panelNewInvoice.add(datePickerPrinted);
-				JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
-				datePickerExpiryDate.setBounds(130, 141, 202, 29);
-				panelNewInvoice.add(datePickerExpiryDate);
-				JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
-				datePickerDelivery.setBounds(130, 181, 202, 29);
+		panelNewInvoice = new JPanel();
+		panelNewInvoice.setForeground(new Color(255, 165, 0));
+		panelNewInvoice.setBackground(new Color(0, 0, 0));
+		panelNewInvoice.setBorder(new LineBorder(Color.ORANGE, 2));
+		panelNewInvoice.setFont(new Font("Verdana Pro Cond Black", Font.PLAIN, 11));
+		tabbedPaneInsideInvoice.addTab("Ny Faktura", null, panelNewInvoice, null);
+		tabbedPaneInsideInvoice.setForegroundAt(0, Color.BLACK);
+		tabbedPaneInsideInvoice.setEnabledAt(0, true);
+		tabbedPaneInsideInvoice.setBackgroundAt(0, Color.ORANGE);
+		panelNewInvoice.setLayout(null);
+		JDatePickerImpl datePickerReceived = new JDatePickerImpl(datePanelReceived, dateLabelFormatter);
+		datePickerReceived.setBounds(130, 101, 202, 29);
+		panelNewInvoice.add(datePickerReceived);
+		JDatePickerImpl datePickerPrinted = new JDatePickerImpl(datePanelPrinted, dateLabelFormatter);
+		datePickerPrinted.setBounds(130, 56, 202, 29);
+		panelNewInvoice.add(datePickerPrinted);
+		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
+		datePickerExpiryDate.setBounds(130, 141, 202, 29);
+		panelNewInvoice.add(datePickerExpiryDate);
 
-						panelNewInvoice.add(datePickerDelivery);
+		panelNewInvoice.add(datePickerDelivery);
 
-								JLabel lblRegisterAmount = new JLabel("Antal");
-								lblRegisterAmount.setForeground(Color.WHITE);
-								lblRegisterAmount.setFont(new Font("Arial Black", Font.PLAIN, 12));
-								lblRegisterAmount.setBounds(10, 342, 59, 14);
-								panelNewInvoice.add(lblRegisterAmount);
+		lblRegisterAmount = new JLabel("Antal");
+		lblRegisterAmount.setForeground(Color.WHITE);
+		lblRegisterAmount.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterAmount.setBounds(10, 342, 59, 14);
+		panelNewInvoice.add(lblRegisterAmount);
 
-										JLabel lblRegisterProduct = new JLabel("Vara");
-										lblRegisterProduct.setForeground(Color.WHITE);
-										lblRegisterProduct.setFont(new Font("Arial Black", Font.PLAIN, 12));
-										lblRegisterProduct.setBounds(10, 317, 87, 14);
-										panelNewInvoice.add(lblRegisterProduct);
+		lblRegisterProduct = new JLabel("Vara");
+		lblRegisterProduct.setForeground(Color.WHITE);
+		lblRegisterProduct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterProduct.setBounds(10, 317, 87, 14);
+		panelNewInvoice.add(lblRegisterProduct);
 
-												JLabel lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
+		lblRegisterInvoiceCopy = new JLabel("Bifoga kopia");
 
-														lblRegisterInvoiceCopy.setForeground(Color.WHITE);
-														lblRegisterInvoiceCopy.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterInvoiceCopy.setForeground(Color.WHITE);
+		lblRegisterInvoiceCopy.setFont(new Font("Arial Black", Font.PLAIN, 12));
 
-																lblRegisterInvoiceCopy.setBounds(10, 252, 87, 14);
-																panelNewInvoice.add(lblRegisterInvoiceCopy);
+		lblRegisterInvoiceCopy.setBounds(10, 252, 87, 14);
+		panelNewInvoice.add(lblRegisterInvoiceCopy);
 
-																		JLabel lblRegisterSupplier = new JLabel("Leverant\u00F6r");
-																		lblRegisterSupplier.setForeground(Color.WHITE);
-																		lblRegisterSupplier.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																		lblRegisterSupplier.setBounds(10, 227, 87, 14);
+		lblRegisterSupplier = new JLabel("Leverant\u00F6r");
+		lblRegisterSupplier.setForeground(Color.WHITE);
+		lblRegisterSupplier.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterSupplier.setBounds(10, 227, 87, 14);
 
+		panelNewInvoice.add(lblRegisterSupplier);
 
-																				panelNewInvoice.add(lblRegisterSupplier);
+		lblRegisterPrintedDate = new JLabel("Utskriftsdatum");
+		lblRegisterPrintedDate.setForeground(Color.WHITE);
+		lblRegisterPrintedDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterPrintedDate.setBounds(10, 59, 110, 26);
+		panelNewInvoice.add(lblRegisterPrintedDate);
 
-																						JLabel lblRegisterPrintedDate = new JLabel("Utskriftsdatum");
-																						lblRegisterPrintedDate.setForeground(Color.WHITE);
-																						lblRegisterPrintedDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																						lblRegisterPrintedDate.setBounds(10, 59, 110, 26);
-																						panelNewInvoice.add(lblRegisterPrintedDate);
+		lblRegisterInvoiceNumber = new JLabel("Fakturanummer");
+		lblRegisterInvoiceNumber.setForeground(Color.WHITE);
+		lblRegisterInvoiceNumber.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterInvoiceNumber.setBounds(10, 21, 110, 26);
+		panelNewInvoice.add(lblRegisterInvoiceNumber);
 
-																								JLabel lblRegisterInvoiceNumber = new JLabel("Fakturanummer");
-																								lblRegisterInvoiceNumber.setForeground(Color.WHITE);
-																								lblRegisterInvoiceNumber.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																								lblRegisterInvoiceNumber.setBounds(10, 21, 110, 26);
-																								panelNewInvoice.add(lblRegisterInvoiceNumber);
+		textFieldRegisterInvoiceNumber = new JTextField();
+		textFieldRegisterInvoiceNumber.setBounds(130, 25, 96, 20);
+		panelNewInvoice.add(textFieldRegisterInvoiceNumber);
+		textFieldRegisterInvoiceNumber.setColumns(10);
 
-																										textFieldRegisterInvoiceNumber = new JTextField();
-																										textFieldRegisterInvoiceNumber.setBounds(130, 25, 96, 20);
-																										panelNewInvoice.add(textFieldRegisterInvoiceNumber);
-																										textFieldRegisterInvoiceNumber.setColumns(10);
+		JComboBox comboBoxRegisterNewInvoiceSupplier_1 = new JComboBox();
+		comboBoxRegisterNewInvoiceSupplier_1.setBackground(Color.WHITE);
+		comboBoxRegisterNewInvoiceSupplier_1.setBounds(130, 221, 96, 18);
 
-																												JComboBox comboBoxRegisterNewInvoiceSupplier_1 = new JComboBox();
-																												comboBoxRegisterNewInvoiceSupplier_1.setBackground(Color.WHITE);
-																												comboBoxRegisterNewInvoiceSupplier_1.setBounds(130, 221, 96, 18);
+		panelNewInvoice.add(comboBoxRegisterNewInvoiceSupplier_1);
 
-																														panelNewInvoice.add(comboBoxRegisterNewInvoiceSupplier_1);
+		btnRegisterInvoiceChooseFile = new JButton("V\u00E4lj fil...");
+		btnRegisterInvoiceChooseFile.setBorderPainted(false);
+		btnRegisterInvoiceChooseFile.setBackground(Color.ORANGE);
+		btnRegisterInvoiceChooseFile.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		btnRegisterInvoiceChooseFile.setBounds(130, 250, 96, 19);
+		panelNewInvoice.add(btnRegisterInvoiceChooseFile);
 
-																																JButton btnRegisterInvoiceChooseFile = new JButton("V\u00E4lj fil...");
-																																btnRegisterInvoiceChooseFile.setBorderPainted(false);
-																																btnRegisterInvoiceChooseFile.setBackground(Color.ORANGE);
-																																btnRegisterInvoiceChooseFile.setFont(new Font("Arial Black", Font.PLAIN, 11));
-																																btnRegisterInvoiceChooseFile.setBounds(130, 250, 96, 19);
-																																panelNewInvoice.add(btnRegisterInvoiceChooseFile);
+		spinnerRegisterNewInvoiceAmount = new JSpinner();
+		spinnerRegisterNewInvoiceAmount.setBounds(130, 339, 96, 20);
+		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
-																																		JSpinner spinnerRegisterNewInvoiceAmount = new JSpinner();
-																																		spinnerRegisterNewInvoiceAmount.setBounds(130, 339, 96, 20);
-																																		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
+		JComboBox comboBoxRegisterInvoiceProduct_1 = new JComboBox();
+		comboBoxRegisterInvoiceProduct_1.setBounds(130, 315, 96, 18);
 
+		panelNewInvoice.add(comboBoxRegisterInvoiceProduct_1);
 
-																																				JComboBox comboBoxRegisterInvoiceProduct_1 = new JComboBox();
-																																				comboBoxRegisterInvoiceProduct_1.setBounds(130, 315, 96, 18);
+		lblRegisterReceivedDate = new JLabel("Mottaget datum");
 
-																																						panelNewInvoice.add(comboBoxRegisterInvoiceProduct_1);
+		lblRegisterReceivedDate.setForeground(Color.WHITE);
+		lblRegisterReceivedDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
 
-																																								JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
+		lblRegisterReceivedDate.setBounds(10, 101, 110, 29);
+		panelNewInvoice.add(lblRegisterReceivedDate);
 
-																																										lblRegisterReceivedDate.setForeground(Color.WHITE);
-																																										lblRegisterReceivedDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
+		lblRegisterExpirationDate.setForeground(Color.WHITE);
+		lblRegisterExpirationDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblRegisterExpirationDate.setBounds(10, 141, 96, 29);
 
-																																												lblRegisterReceivedDate.setBounds(10, 101, 110, 29);
-																																												panelNewInvoice.add(lblRegisterReceivedDate);
+		panelNewInvoice.add(lblRegisterExpirationDate);
 
-																																														JLabel lblRegisterExpirationDate = new JLabel("F\u00F6rfallodatum");
-																																														lblRegisterExpirationDate.setForeground(Color.WHITE);
-																																														lblRegisterExpirationDate.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																																														lblRegisterExpirationDate.setBounds(10, 141, 96, 29);
+		btnRegisterInvoice = new JButton("Registrera");
+		btnRegisterInvoice.setBorderPainted(false);
+		btnRegisterInvoice.setBackground(Color.ORANGE);
+		btnRegisterInvoice.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		btnRegisterInvoice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
+			}
+		});
+		btnRegisterInvoice.setBounds(130, 382, 193, 23);
+		panelNewInvoice.add(btnRegisterInvoice);
 
-																																																panelNewInvoice.add(lblRegisterExpirationDate);
+		lblLeveransdatum = new JLabel("Leveransdatum");
+		lblLeveransdatum.setForeground(Color.WHITE);
+		lblLeveransdatum.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lblLeveransdatum.setBounds(10, 181, 110, 29);
+		panelNewInvoice.add(lblLeveransdatum);
 
-																																																		JButton btnRegisterInvoice = new JButton("Registrera");
-																																																		btnRegisterInvoice.setBorderPainted(false);
-																																																		btnRegisterInvoice.setBackground(Color.ORANGE);
-																																																		btnRegisterInvoice.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																																																		btnRegisterInvoice.addActionListener(new ActionListener() {
-																																																			public void actionPerformed(ActionEvent e) {
-
-																																																			}
-																																																		});
-																																																		btnRegisterInvoice.setBounds(130, 382, 193, 23);
-																																																		panelNewInvoice.add(btnRegisterInvoice);
-
-																																																				JLabel lblLeveransdatum = new JLabel("Leveransdatum");
-																																																				lblLeveransdatum.setForeground(Color.WHITE);
-																																																				lblLeveransdatum.setFont(new Font("Arial Black", Font.PLAIN, 12));
-																																																				lblLeveransdatum.setBounds(10, 181, 110, 29);
-																																																				panelNewInvoice.add(lblLeveransdatum);
-
-																																																				JLabel label_9 = new JLabel("");
-																																																				label_9.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
-																																																				label_9.setBackground(Color.ORANGE);
-																																																				label_9.setForeground(Color.ORANGE);
-																																																				label_9.setBounds(734, 375, 50, 54);
-																																																				panelNewInvoice.add(label_9);
+		JLabel label_9 = new JLabel("");
+		label_9.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
+		label_9.setBackground(Color.ORANGE);
+		label_9.setForeground(Color.ORANGE);
+		label_9.setBounds(734, 375, 50, 54);
+		panelNewInvoice.add(label_9);
 
 		JPanel panelSearchInvoice = new JPanel();
 		panelSearchInvoice.setBackground(Color.BLACK);
@@ -442,7 +439,6 @@ public class Application {
 		lblFindInvoiceByCategory.setBounds(32, 63, 68, 14);
 		panelSearchInvoice.add(lblFindInvoiceByCategory);
 
-
 		comboBoxFindInvoiceByCategory = new JComboBox();
 		comboBoxFindInvoiceByCategory.setBounds(137, 62, 96, 18);
 
@@ -461,7 +457,8 @@ public class Application {
 		panelSearchInvoice.add(btnFindInvoice);
 
 		JLabel lblAddInvoiceResponse = new JLabel("");
-		lblAddInvoiceResponse.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
+		lblAddInvoiceResponse.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
 		lblAddInvoiceResponse.setBounds(251, 74, 96, 49);
 		panelSearchInvoice.add(lblAddInvoiceResponse);
 
@@ -473,13 +470,15 @@ public class Application {
 			public void actionPerformed(ActionEvent e) {
 
 				String invoiceNumber = textFieldFindInvoiceByInvoiceNumber.getText();
-				String category = (String)comboBoxFindInvoiceByCategory.getSelectedItem();
+				String category = (String) comboBoxFindInvoiceByCategory.getSelectedItem();
 				if (!invoiceNumber.equals("") && category == null) {
 					if (controller.getInvoiceRegister().findInvoice(invoiceNumber) == null) {
 						lblErrorMessageInvoice.setText("Ingen faktura med det inskrivna fakturanummret");
 						lblAddInvoiceResponse.setText("");
 					} else {
-						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nF�rfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
+						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nF�rfallodatum: "
+								+ controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate()
+								+ "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
 						textAreaSearchInvoice.setText(print);
 						lblErrorMessageInvoice.setText("");
 						lblAddInvoiceResponse.setText("Faktura hittad!");
@@ -489,7 +488,8 @@ public class Application {
 					lblErrorMessageInvoice.setText("");
 					lblAddInvoiceResponse.setText("Fakturor inom kategori " + category + " hittade!");
 				} else {
-					lblErrorMessageInvoice.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
+					lblErrorMessageInvoice
+							.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
 					lblAddInvoiceResponse.setText("");
 				}
 
@@ -578,12 +578,11 @@ public class Application {
 				String number = textFieldNewSupplierNumber.getText();
 				String site = textFieldNewSupplierSite.getText();
 
-				///Felmeddelande om man inte fyller i något
+				/// Felmeddelande om man inte fyller i något
 				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
 					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
 					lblAddSupplierResponse.setText("");
-				}
-				else if (controller.searchSupplier(name) == null) {
+				} else if (controller.searchSupplier(name) == null) {
 					lblErrorMessageSupplier.setText("");
 					controller.addSupplier(name, fax, number, site);
 					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
@@ -591,7 +590,7 @@ public class Application {
 					textFieldNewSupplierFax.setText("");
 					textFieldNewSupplierNumber.setText("");
 					textFieldNewSupplierSite.setText("");
-				}// felmeddlande om supplier redan finns i databaserna
+				} // felmeddlande om supplier redan finns i databaserna
 				else {
 					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
 					lblAddSupplierResponse.setText("");
@@ -602,10 +601,10 @@ public class Application {
 		panelRegisterNewSupplier.add(btnNewSupplier);
 
 		JLabel label_11 = new JLabel("");
-		label_11.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
+		label_11.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
 		label_11.setBounds(746, 395, 50, 54);
 		panelRegisterNewSupplier.add(label_11);
-
 
 		JPanel panelSearchSupplier = new JPanel();
 		panelSearchSupplier.setBackground(Color.BLACK);
@@ -624,20 +623,21 @@ public class Application {
 		btnSortSupplier.setBorderPainted(false);
 		btnSortSupplier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (comboBoxSearchSupplierByProduct.getSelectedItem() == null && comboBoxSearchSupplierByCategory.getSelectedItem() == null) {
+				if (comboBoxSearchSupplierByProduct.getSelectedItem() == null
+						&& comboBoxSearchSupplierByCategory.getSelectedItem() == null) {
 					lblErrorInSearchForSupplier.setText("Vänligen välj en kategori eller en vara.");
-				}
-				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null && comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+				} else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null
+						&& comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
 					lblErrorInSearchForSupplier.setText("Vänligen välj endast en kategori eller en vara.");
 					comboBoxSearchSupplierByProduct.setSelectedItem(null);
 					comboBoxSearchSupplierByCategory.setSelectedItem(null);
-				}
-				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
-					tableSearchSuppliers.setModel(controller.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
+				} else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller
+							.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
 					lblErrorInSearchForSupplier.setText("");
-				}
-				else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
-					tableSearchSuppliers.setModel(controller.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
+				} else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller
+							.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
 					lblErrorInSearchForSupplier.setText("");
 				}
 			}
@@ -695,7 +695,8 @@ public class Application {
 		scrollPaneSearchSuppliers.setViewportView(tableSearchSuppliers);
 
 		JLabel label_12 = new JLabel("");
-		label_12.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-search-50[1].png"));
+		label_12.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-search-50[1].png"));
 		label_12.setBounds(231, 11, 49, 44);
 		panelSearchSupplier.add(label_12);
 
@@ -728,7 +729,6 @@ public class Application {
 		textField.setColumns(10);
 		textField.setBounds(96, 34, 96, 20);
 		panel.add(textField);
-
 
 		JLabel lblAddCategoryResponse = new JLabel("");
 		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
@@ -764,9 +764,6 @@ public class Application {
 		button.setBounds(28, 61, 164, 23);
 		panel.add(button);
 
-
-
-
 		JLabel label_3 = new JLabel("Ny vara:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Arial Black", Font.BOLD, 11));
@@ -784,7 +781,6 @@ public class Application {
 		label_5.setForeground(Color.WHITE);
 		label_5.setBounds(10, 221, 66, 14);
 		panel.add(label_5);
-
 
 		comboBoxAddProductCategory = new JComboBox();
 		comboBoxAddProductCategory.setBounds(96, 220, 96, 18);
@@ -828,7 +824,6 @@ public class Application {
 		label_7.setBounds(10, 196, 79, 14);
 		panel.add(label_7);
 
-
 		comboBoxAddProductSupplier = new JComboBox();
 		comboBoxAddProductSupplier.setBounds(96, 195, 96, 18);
 		panel.add(comboBoxAddProductSupplier);
@@ -836,10 +831,8 @@ public class Application {
 		JLabel label_13 = new JLabel("");
 		label_13.setBounds(143, 95, 49, 36);
 		panel.add(label_13);
-		label_13.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-edit-50[2].png"));
-
-
-
+		label_13.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-edit-50[2].png"));
 
 		JPanel panelReport = new JPanel();
 		panelReport.setBorder(new LineBorder(Color.ORANGE, 2));
@@ -918,7 +911,8 @@ public class Application {
 		panelReport.add(label);
 
 		JLabel label_14 = new JLabel("");
-		label_14.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
+		label_14.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
 		label_14.setBounds(219, 154, 49, 50);
 		panelReport.add(label_14);
 	}
