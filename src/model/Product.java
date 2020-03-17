@@ -14,6 +14,7 @@ public class Product {
 		this.setUnitPrice(unitPrice);
 		this.setName(name);
 	}
+	
 	public String getProductNumber() {
 		return productNumber;
 	}
