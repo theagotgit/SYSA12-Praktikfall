@@ -321,10 +321,15 @@ public class Application {
 		btnFindInvoice.setBounds(39, 91, 194, 23);
 		panelSearchInvoice.add(btnFindInvoice);
 		
-		JLabel label_10 = new JLabel("");
-		label_10.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
-		label_10.setBounds(251, 74, 49, 49);
-		panelSearchInvoice.add(label_10);
+		JLabel lblAddInvoiceResponse = new JLabel("");
+		lblAddInvoiceResponse.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
+		lblAddInvoiceResponse.setBounds(251, 74, 96, 49);
+		panelSearchInvoice.add(lblAddInvoiceResponse);
+		
+		JLabel lblErrorMessageInvoice = new JLabel("");
+		lblErrorMessageInvoice.setForeground(Color.RED);
+		lblErrorMessageInvoice.setBounds(49, 124, 167, 13);
+		panelSearchInvoice.add(lblErrorMessageInvoice);
 		btnFindInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -332,15 +337,21 @@ public class Application {
 				String category = (String)comboBoxFindInvoiceByCategory.getSelectedItem();
 				if (!invoiceNumber.equals("") && category == null) {
 					if (controller.getInvoiceRegister().findInvoice(invoiceNumber) == null) {
-						//Felmeddelande
+						lblErrorMessageInvoice.setText("Ingen faktura med det inskrivna fakturanummret");
+						lblAddInvoiceResponse.setText("");
 					} else {
 						String print = "Hittade faktura nummer " + invoiceNumber + "\nLadda ner fil...\nF�rfallodatum: " + controller.getInvoiceRegister().findInvoice(invoiceNumber).getExpiryDate() + "\nSumma:" + controller.findSum(invoiceNumber) + " SEK";
 						textAreaSearchInvoice.setText(print);
+						lblErrorMessageInvoice.setText("");
+						lblAddInvoiceResponse.setText("Faktura hittad!");
 					}
 				} else if (category != null && invoiceNumber.equals("")) {
 					textAreaSearchInvoice.setText(controller.searchCategory(category));
+					lblErrorMessageInvoice.setText("");
+					lblAddInvoiceResponse.setText("Fakturor inom kategori " + category + " hittade!");
 				} else {
-					//felmeddelande till anv�ndaren
+					lblErrorMessageInvoice.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
+					lblAddInvoiceResponse.setText("");
 				}
 
 			}
