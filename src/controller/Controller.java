@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javax.swing.table.DefaultTableModel;
@@ -85,12 +86,33 @@ public class Controller {
 		}
 		return new DefaultTableModel(allSupplierData, supplierTableColumns);
 	}
+
+	public boolean testProductListForCategory(String categoryName, ArrayList<Product> products) {
+		for (Product tmp : products) {
+			if (tmp.getCategory().getName().equals(categoryName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean testProductListForProduct(String productNumber, ArrayList<Product> products) {
+		for (Product tmp : products) {
+			if (tmp.getProductNumber().equals(productNumber)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public DefaultTableModel filterSuppliersByCategory(String categoryName) {
-		//Sorting all suppliers alphabetically by name.
+		//Sorting all suppliers alphabetically by name and only adding suppliers with products matching the specified category
 		TreeMap<String, Supplier> sortedSuppliers = new TreeMap<String, Supplier>();
-		for (Supplier tmp : supplierRegister.getSupplierlist()) {
-			sortedSuppliers.put(tmp.getName(), tmp);
+		
+		for (Supplier tmpSupplier : supplierRegister.getSupplierlist()) {
+			ArrayList<Product> productList = tmpSupplier.getProducts();
+			if(this.testProductListForCategory(categoryName, productList)) {
+				sortedSuppliers.put(tmpSupplier.getName(), tmpSupplier);
+			}
 		}
 
 		String[][] allSupplierData = new String[sortedSuppliers.keySet().size()][supplierTableColumns.length];
@@ -104,6 +126,30 @@ public class Controller {
 		}
 		return new DefaultTableModel(allSupplierData, supplierTableColumns);
 	}
+	
+	public DefaultTableModel filterSuppliersByProduct(String productNumber) {
+		//Sorting all suppliers alphabetically by name and only adding suppliers with products matching the specified product
+		TreeMap<String, Supplier> sortedSuppliers = new TreeMap<String, Supplier>();
+		
+		for (Supplier tmpSupplier : supplierRegister.getSupplierlist()) {
+			ArrayList<Product> productList = tmpSupplier.getProducts();
+			if(this.testProductListForProduct(productNumber, productList)) {
+				sortedSuppliers.put(tmpSupplier.getName(), tmpSupplier);
+			}
+		}
+
+		String[][] allSupplierData = new String[sortedSuppliers.keySet().size()][supplierTableColumns.length];
+		int i = 0;
+		for (Map.Entry<String, Supplier> tmp : sortedSuppliers.entrySet()) {
+			allSupplierData[i][0] = tmp.getKey();
+			allSupplierData[i][1] = tmp.getValue().getTelephoneNumber();
+			allSupplierData[i][2] = tmp.getValue().getFaxNumber();
+			allSupplierData[i][3] = tmp.getValue().getWebAddress();
+			i++;
+		}
+		return new DefaultTableModel(allSupplierData, supplierTableColumns);
+	}
+	
 	
 	public void removeSupplier(String name) {
 		supplierRegister.deleteSupplier(name);
