@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -285,6 +286,19 @@ public class Controller {
 
 		return comboboxModels;
 
+	}
+	public DefaultComboBoxModel filterProductsBySupplier(String supplierName) {
+		Supplier supplier = supplierRegister.findSupplier(supplierName);
+		ArrayList<Product> products = supplier.getProducts();
+
+		String[] productAsStringArray = new String[products.size()];
+		int i = 0;
+		for (Product tmp : products) {
+			productAsStringArray[i] = tmp.getProductNumber();
+			i++;
+		}
+		Arrays.sort(productAsStringArray);
+		return new DefaultComboBoxModel<String>(productAsStringArray);
 	}
 
 }
