@@ -303,8 +303,6 @@ public class Application {
 		datePickerExpiryDate.setBounds(130, 141, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
 
-		panelNewInvoice.add(datePickerDelivery);
-
 		lblRegisterAmount = new JLabel("Antal");
 		lblRegisterAmount.setForeground(Color.WHITE);
 		lblRegisterAmount.setFont(new Font("Arial Black", Font.PLAIN, 12));
