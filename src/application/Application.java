@@ -694,6 +694,10 @@ public class Application {
 		textFieldProductName.setColumns(10);
 		textFieldProductName.setBounds(96, 143, 96, 20);
 		panel.add(textFieldProductName);
+		
+		JLabel lblProductResponse = new JLabel("");
+		lblProductResponse.setBounds(220, 264, 46, 13);
+		panel.add(lblProductResponse);
 
 		JButton buttonAddProduct = new JButton("L\u00E4gg till vara");
 		buttonAddProduct.setBackground(Color.ORANGE);
@@ -704,11 +708,28 @@ public class Application {
 				String productName = textFieldProductName.getText();
 				String productNumber = textFieldProductNumber.getText();
 				String supplier = (String) comboBoxAddProductSupplier.getSelectedItem();
-				String category = (String) comboBoxAddProductSupplier.getSelectedItem();
-
+				String category = (String) comboBoxAddProductCategory.getSelectedItem();
+				
+				///Felmeddelande om man inte fyller i något
+				if (productName.equals("") || productNumber.equals("") || supplier != null || category != null) {
+					lblErrorMessage.setText("ERROR! Vänligen fyll i alla rutor.");
+					lblProductResponse.setText("");
+				}else if (controller.getCategoryRegister().findCategory(category).findProduct(controller.getSupplierRegister().findSupplier(supplier), productNumber)== null) {
+					lblErrorMessage.setText("");
+					// Lägg till addProduct när unitPrice är löst
+					lblProductResponse.setText("Produkten " + productName + "är tillagd i databasen");
+					textFieldProductName.setText("");
+					textFieldProductNumber.setText("");
+					comboBoxAddProductSupplier.setSelectedItem(null);
+					comboBoxAddProductSupplier.setSelectedItem(null); 
+				}// felmeddlande om vara redan finns i databasen
+				else {
+					lblErrorMessage.setText("ERROR! Produkten är redan registrerad");
+					lblProductResponse.setText("");
+				}
 			}
 		});
-		buttonAddProduct.setBounds(28, 249, 164, 23);
+		buttonAddProduct.setBounds(28, 258, 164, 23);
 		panel.add(buttonAddProduct);
 
 		textFieldProductNumber = new JTextField();
@@ -735,9 +756,9 @@ public class Application {
 		JLabel label_13 = new JLabel("");
 		label_13.setBounds(143, 95, 49, 36);
 		panel.add(label_13);
-		label_13.setIcon(new ImageIcon(
-				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-edit-50[2].png"));
 
+		label_13.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-edit-50[2].png"));
+		
 		JPanel panelReport = new JPanel();
 		panelReport.setBorder(new LineBorder(Color.ORANGE, 2));
 		panelReport.setBackground(Color.BLACK);
