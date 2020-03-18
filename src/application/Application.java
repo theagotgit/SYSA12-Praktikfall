@@ -28,6 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -62,10 +64,13 @@ public class Application {
 
 	public void updateComboBoxes(Controller controller) {
 		ArrayList<DefaultComboBoxModel> comboBoxContent = controller.updateComboBoxes();
-		/*	Supplier comboboxes: comboBoxRegisterNewInvoiceSupplier, comboBoxAddProductSupplier, comboBoxReportSupplier
-		 * 	Product comboboxes: comboBoxRegisterInvoiceProduct, comboBoxSearchSupplierByProduct
-		 * 	Category comboboxes: comboBoxFindInvoiceByCategory, comboBoxSearchSupplierByCategory, comboBoxAddProductCategory, comboBoxReportCategory
-		 * */
+		/*
+		 * Supplier comboboxes: comboBoxRegisterNewInvoiceSupplier,
+		 * comboBoxAddProductSupplier, comboBoxReportSupplier Product comboboxes:
+		 * comboBoxRegisterInvoiceProduct, comboBoxSearchSupplierByProduct Category
+		 * comboboxes: comboBoxFindInvoiceByCategory, comboBoxSearchSupplierByCategory,
+		 * comboBoxAddProductCategory, comboBoxReportCategory
+		 */
 		comboBoxRegisterNewInvoiceSupplier.setModel(comboBoxContent.get(0));
 		comboBoxAddProductSupplier.setModel(comboBoxContent.get(0));
 		comboBoxReportSupplier.setModel(comboBoxContent.get(0));
@@ -76,7 +81,6 @@ public class Application {
 		comboBoxAddProductCategory.setModel(comboBoxContent.get(2));
 		comboBoxReportCategory.setModel(comboBoxContent.get(2));
 	}
-
 
 	/**
 	 * Launch the application.
@@ -105,7 +109,6 @@ public class Application {
 	public Application() {
 		initialize();
 	}
-
 
 	/**
 	 * Initialize the contents of the frame.
@@ -137,7 +140,8 @@ public class Application {
 		panelStart.setLayout(null);
 
 		JLabel label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon("C:\\Users\\Vicky\\eclipse-workspace\\Swing\\SYSA12-Praktikfall\\Copy of CompanyLogo.png"));
+		label_8.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\eclipse-workspace\\Swing\\SYSA12-Praktikfall\\Copy of CompanyLogo.png"));
 		label_8.setBounds(311, 161, 241, 165);
 		panelStart.add(label_8);
 
@@ -156,7 +160,6 @@ public class Application {
 		tabbedPaneInsideInvoice.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		tabbedPaneInsideInvoice.setBounds(10, 11, 822, 489);
 		panelInvoice.add(tabbedPaneInsideInvoice);
-
 
 		DateLabelFormatter dateLabelFormatter = new DateLabelFormatter();
 		Properties p = new Properties();
@@ -178,9 +181,9 @@ public class Application {
 		JDatePickerImpl datePickerDelivery = new JDatePickerImpl(datePanelDelivery, dateLabelFormatter);
 		datePickerDelivery.setBounds(130, 181, 202, 29);
 
-		
 
-		
+
+
 		JPanel panelNewInvoice = new JPanel();
 		panelNewInvoice.add(datePickerDelivery);
 		panelNewInvoice.setForeground(new Color(255, 165, 0));
@@ -201,7 +204,7 @@ public class Application {
 		JDatePickerImpl datePickerExpiryDate = new JDatePickerImpl(datePanelExpiryDate, dateLabelFormatter);
 		datePickerExpiryDate.setBounds(130, 141, 202, 29);
 		panelNewInvoice.add(datePickerExpiryDate);
-		
+
 
 		panelNewInvoice.add(datePickerDelivery);
 
@@ -266,10 +269,10 @@ public class Application {
 		spinnerRegisterNewInvoiceAmount.setBounds(130, 339, 96, 20);
 		panelNewInvoice.add(spinnerRegisterNewInvoiceAmount);
 
-		JComboBox comboBoxRegisterInvoiceProduct_1 = new JComboBox();
-		comboBoxRegisterInvoiceProduct_1.setBounds(130, 315, 96, 18);
+		comboBoxRegisterInvoiceProduct = new JComboBox();
+		comboBoxRegisterInvoiceProduct.setBounds(130, 315, 96, 18);
 
-		panelNewInvoice.add(comboBoxRegisterInvoiceProduct_1);
+		panelNewInvoice.add(comboBoxRegisterInvoiceProduct);
 
 		JLabel lblRegisterReceivedDate = new JLabel("Mottaget datum");
 
@@ -389,7 +392,8 @@ public class Application {
 					lblErrorMessageInvoice.setText("");
 					lblAddInvoiceResponse.setText("Fakturor inom kategori " + category + " hittade!");
 				} else {
-					lblErrorMessageInvoice.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
+					lblErrorMessageInvoice
+							.setText("Välj mellan att söka faktura genom vald kategori ELLER specifikt fakturanummer");
 					lblAddInvoiceResponse.setText("");
 				}
 
@@ -478,12 +482,11 @@ public class Application {
 				String number = textFieldNewSupplierNumber.getText();
 				String site = textFieldNewSupplierSite.getText();
 
-				///Felmeddelande om man inte fyller i något
+				/// Felmeddelande om man inte fyller i något
 				if (name.equals("") || fax.equals("") || number.equals("") || site.contentEquals("")) {
 					lblErrorMessageSupplier.setText("ERROR! Vänligen fyll i alla rutor");
 					lblAddSupplierResponse.setText("");
-				}
-				else if (controller.searchSupplier(name) == null) {
+				} else if (controller.searchSupplier(name) == null) {
 					lblErrorMessageSupplier.setText("");
 					controller.addSupplier(name, fax, number, site);
 					lblAddSupplierResponse.setText("Leverantören " + name + "är tillagd i databasen");
@@ -491,7 +494,7 @@ public class Application {
 					textFieldNewSupplierFax.setText("");
 					textFieldNewSupplierNumber.setText("");
 					textFieldNewSupplierSite.setText("");
-				}// felmeddlande om supplier redan finns i databaserna
+				} // felmeddlande om supplier redan finns i databaserna
 				else {
 					lblErrorMessageSupplier.setText("ERROR! Leverantören är redan registrerad");
 					lblAddSupplierResponse.setText("");
@@ -502,10 +505,10 @@ public class Application {
 		panelRegisterNewSupplier.add(btnNewSupplier);
 
 		JLabel label_11 = new JLabel("");
-		label_11.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
+		label_11.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-document-50[2].png"));
 		label_11.setBounds(746, 395, 50, 54);
 		panelRegisterNewSupplier.add(label_11);
-
 
 		JPanel panelSearchSupplier = new JPanel();
 		panelSearchSupplier.setBackground(Color.BLACK);
@@ -524,20 +527,21 @@ public class Application {
 		btnSortSupplier.setBorderPainted(false);
 		btnSortSupplier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (comboBoxSearchSupplierByProduct.getSelectedItem() == null && comboBoxSearchSupplierByCategory.getSelectedItem() == null) {
+				if (comboBoxSearchSupplierByProduct.getSelectedItem() == null
+						&& comboBoxSearchSupplierByCategory.getSelectedItem() == null) {
 					lblErrorInSearchForSupplier.setText("Vänligen välj en kategori eller en vara.");
-				}
-				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null && comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+				} else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null
+						&& comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
 					lblErrorInSearchForSupplier.setText("Vänligen välj endast en kategori eller en vara.");
 					comboBoxSearchSupplierByProduct.setSelectedItem(null);
 					comboBoxSearchSupplierByCategory.setSelectedItem(null);
-				}
-				else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
-					tableSearchSuppliers.setModel(controller.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
+				} else if (comboBoxSearchSupplierByProduct.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller
+							.filterSuppliersByProduct(comboBoxSearchSupplierByProduct.getSelectedItem().toString()));
 					lblErrorInSearchForSupplier.setText("");
-				}
-				else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
-					tableSearchSuppliers.setModel(controller.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
+				} else if (comboBoxSearchSupplierByCategory.getSelectedItem() != null) {
+					tableSearchSuppliers.setModel(controller
+							.filterSuppliersByCategory(comboBoxSearchSupplierByCategory.getSelectedItem().toString()));
 					lblErrorInSearchForSupplier.setText("");
 				}
 			}
@@ -595,7 +599,8 @@ public class Application {
 		scrollPaneSearchSuppliers.setViewportView(tableSearchSuppliers);
 
 		JLabel label_12 = new JLabel("");
-		label_12.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-search-50[1].png"));
+		label_12.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\5HHUSZ1C\\icons8-search-50[1].png"));
 		label_12.setBounds(231, 11, 49, 44);
 		panelSearchSupplier.add(label_12);
 
@@ -628,7 +633,6 @@ public class Application {
 		textField.setColumns(10);
 		textField.setBounds(96, 34, 96, 20);
 		panel.add(textField);
-
 
 		JLabel lblAddCategoryResponse = new JLabel("");
 		lblAddCategoryResponse.setBounds(202, 65, 448, 14);
@@ -664,9 +668,6 @@ public class Application {
 		button.setBounds(28, 61, 164, 23);
 		panel.add(button);
 
-
-
-
 		JLabel label_3 = new JLabel("Ny vara:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Arial Black", Font.BOLD, 11));
@@ -684,7 +685,6 @@ public class Application {
 		label_5.setForeground(Color.WHITE);
 		label_5.setBounds(10, 221, 66, 14);
 		panel.add(label_5);
-
 
 		comboBoxAddProductCategory = new JComboBox();
 		comboBoxAddProductCategory.setBounds(96, 220, 96, 18);
@@ -749,7 +749,6 @@ public class Application {
 		label_7.setBounds(10, 196, 79, 14);
 		panel.add(label_7);
 
-
 		comboBoxAddProductSupplier = new JComboBox();
 		comboBoxAddProductSupplier.setBounds(96, 195, 96, 18);
 		panel.add(comboBoxAddProductSupplier);
@@ -757,6 +756,7 @@ public class Application {
 		JLabel label_13 = new JLabel("");
 		label_13.setBounds(143, 95, 49, 36);
 		panel.add(label_13);
+
 		label_13.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-edit-50[2].png"));
 		
 		JPanel panelReport = new JPanel();
@@ -836,7 +836,8 @@ public class Application {
 		panelReport.add(label);
 
 		JLabel label_14 = new JLabel("");
-		label_14.setIcon(new ImageIcon("C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
+		label_14.setIcon(new ImageIcon(
+				"C:\\Users\\Vicky\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\9PKCFHM7\\icons8-search-50[1].png"));
 		label_14.setBounds(219, 154, 49, 50);
 		panelReport.add(label_14);
 	}
