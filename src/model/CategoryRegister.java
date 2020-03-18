@@ -6,7 +6,7 @@ public class CategoryRegister {
 	private ArrayList<Category> categories = new ArrayList<Category>();
 	
 	
-	
+	public CategoryRegister() {}
 	public CategoryRegister(ArrayList<Category> categories) {
 		this.categories = categories;
 	}
